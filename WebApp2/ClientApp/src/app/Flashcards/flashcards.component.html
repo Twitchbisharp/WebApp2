@@ -9,13 +9,16 @@
       <th width="180">
         <button class='btn-primary'
                 (click)='toggleImage()'>
-            {{displayImage ? 'Hide' : 'Show'}}  Image
+          {{displayImage ? 'Hide' : 'Show'}}  Image
         </button>
+        <h6>Filtered by: {{listFilter}}</h6>
+        <input type='text'
+               [(ngModel)]='listFilter' />
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor='let flashcard of flashcards'>
+    <tr *ngFor='let flashcard of filteredFlashcards'>
       <td>{{ flashcard.FlashcardId }}</td>
       <td>{{ flashcard.Name }}</td>
       <td>{{ flashcard.Description }}</td>
