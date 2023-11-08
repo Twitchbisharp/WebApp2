@@ -1,0 +1,25 @@
+<h1 id="tableLabel">List of Flashcards({{viewTitle}} View)</h1>
+
+<table class='table table-striped' aria-labelledby="tableLabel">
+  <thead>
+    <tr>
+      <th>Flashcard Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th width="180">
+        <button class='btn-primary'
+                (click)='toggleImage()'>
+            {{displayImage ? 'Hide' : 'Show'}}  Image
+        </button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let flashcard of flashcards'>
+      <td>{{ flashcard.FlashcardId }}</td>
+      <td>{{ flashcard.Name }}</td>
+      <td>{{ flashcard.Description }}</td>
+      <td *ngIf="displayImage"><img [src]="flashcard.ImageUrl" width="80"/></td>
+    </tr>
+  </tbody>
+</table>
