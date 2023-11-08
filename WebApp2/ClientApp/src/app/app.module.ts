@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { FlashcardsComponent } from './Flashcards/flashcards.component';
+import { ConvertToCurrency } from './shared/convert-to-currency.pipe';
+
 
 
 @NgModule({
@@ -16,6 +18,7 @@ import { FlashcardsComponent } from './Flashcards/flashcards.component';
     NavMenuComponent,
     HomeComponent,
     FlashcardsComponent,
+    ConvertToCurrency
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
