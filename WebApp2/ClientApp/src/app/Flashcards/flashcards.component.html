@@ -19,7 +19,8 @@
       <td>{{ flashcard.FlashcardId }}</td>
       <td>{{ flashcard.Name }}</td>
       <td>{{ flashcard.Description }}</td>
-      <td *ngIf="displayImage"><img [src]="flashcard.ImageUrl" width="80"/></td>
+      <td width="120">{{ flashcard.Price | convertToCurrency: 'kr.' }}</td>
+      <td *ngIf="displayImage"><img [src]="flashcard.ImageUrl" width="80" /></td>
     </tr>
   </tbody>
 </table>
