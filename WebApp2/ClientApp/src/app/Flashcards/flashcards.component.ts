@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IFlashcard } from './flashcard';
+import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-flashcards-component',
@@ -10,6 +12,9 @@ export class FlashcardsComponent {
   viewTitle: string = 'Table'
   displayImage: boolean = true;
   // listFilter: string = '';
+  flashcards: IFlashcard[] = [];
+
+  constructor(private _http: HttpClient, private _router: Router) { }
 
   private _listFilter: string = '';
   get listFilter(): string {
@@ -21,7 +26,14 @@ export class FlashcardsComponent {
     this.filteredFlashcards = this.performFilter(value);
   }
 
-
+  getFlashcards(): void {
+    this._http.get<IFlashcard[]>("api/flashcard").subscribe(data => {
+      console.log('All', JSON.stringify(data));
+      this.flashcards = data;
+      this.filteredFlashcards = this.flashcards;
+    })
+  }
+  /*
   flashcards: IFlashcard[] = [
     {
       "FlashcardId": 1,
@@ -38,7 +50,7 @@ export class FlashcardsComponent {
       "ImageUrl": "assets/images/test.jpg"
      //Missing image icon shows when an image is linked with no matching image
     }
-  ];
+  ];*/
   filteredFlashcards: IFlashcard[] = this.flashcards;
 
   performFilter(filterBy: string): IFlashcard[] {
@@ -49,6 +61,10 @@ export class FlashcardsComponent {
 
   toggleImage(): void {
     this.displayImage = !this.displayImage;
+  }
+
+  navigateToFlashcardform() {
+    this._router.navigate(['/flashcardform'])
   }
 
   ngOnInit(): void {
