@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { FormGroup, FormControl, Validators, FormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
-import { HttpClient } from '@angular/common/http'
+import { FlashcardService } from "./flashcards.service";
 
 @Component({
   selector: "app-flashcards-flashcardform",
@@ -11,10 +11,9 @@ import { HttpClient } from '@angular/common/http'
 export class FlashcardformComponent {
   flashcardForm: FormGroup;
 
-  constructor(private _formbuilder: FormBuilder, private _router: Router, private _http: HttpClient) {
+  constructor(private _formbuilder: FormBuilder, private _router: Router, private _flashcardService: FlashcardService) {
     this.flashcardForm = _formbuilder.group({
       name: ['', Validators.required],
-      price: [0, Validators.required],
       description: [''],
       imageUrl: ['']
     });
@@ -25,10 +24,10 @@ export class FlashcardformComponent {
     console.log(this.flashcardForm);
     const newFlashcard = this.flashcardForm.value;
     const createUrl = "api/flashcard/create"
-    this._http.post<any>(createUrl, newFlashcard).subscribe(response => {
+    this._flashcardService.createFlashcard(newFlashcard).subscribe(response => {
       if (response.success) {
         console.log(response.message);
-        this._router.navigate(['/flashcard']);
+        this._router.navigate(['/flashcards']);
       }
       else {
         console.log('Flashcard creation failed')

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IFlashcard } from './flashcard';
-import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { FlashcardService } from "./flashcards.service";
 
 @Component({
   selector: 'app-flashcards-component',
@@ -14,7 +14,7 @@ export class FlashcardsComponent {
   // listFilter: string = '';
   flashcards: IFlashcard[] = [];
 
-  constructor(private _http: HttpClient, private _router: Router) { }
+  constructor(private _flashcardService: FlashcardService, private _router: Router) { }
 
   private _listFilter: string = '';
   get listFilter(): string {
@@ -27,30 +27,13 @@ export class FlashcardsComponent {
   }
 
   getFlashcards(): void {
-    this._http.get<IFlashcard[]>("api/flashcard").subscribe(data => {
+    this._flashcardService.getFlashcards().subscribe(data => {
       console.log('All', JSON.stringify(data));
       this.flashcards = data;
       this.filteredFlashcards = this.flashcards;
     })
   }
-  /*
-  flashcards: IFlashcard[] = [
-    {
-      "FlashcardId": 1,
-      "Name": "Hus",
-      "Price":150,
-      "Description": "House",
-      "ImageUrl": "assets/images/test.jpg"
-    },
-    {
-      "FlashcardId": 2,
-      "Name": "Bil",
-      "Price": 20,
-      "Description": "Car",
-      "ImageUrl": "assets/images/test.jpg"
-     //Missing image icon shows when an image is linked with no matching image
-    }
-  ];*/
+
   filteredFlashcards: IFlashcard[] = this.flashcards;
 
   performFilter(filterBy: string): IFlashcard[] {
@@ -68,7 +51,7 @@ export class FlashcardsComponent {
   }
 
   ngOnInit(): void {
-    console.log('ItemsConponent created');
+    console.log('FlashcardsConponent created');
   }
 
 
