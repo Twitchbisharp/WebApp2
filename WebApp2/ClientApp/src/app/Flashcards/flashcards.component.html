@@ -1,5 +1,7 @@
 <h1 id="tableLabel">List of Flashcards({{viewTitle}} View)</h1>
 
+<button class="btn btn-primary" (click)="getFlashcards()">Get Flashcards</button>
+
 <table class='table table-striped' aria-labelledby="tableLabel">
   <thead>
     <tr>
@@ -7,20 +9,24 @@
       <th>Name</th>
       <th>Description</th>
       <th width="180">
-        <button class='btn-primary'
+        <button class='btn btn-primary'
                 (click)='toggleImage()'>
-            {{displayImage ? 'Hide' : 'Show'}}  Image
+          {{displayImage ? 'Hide' : 'Show'}}  Image
         </button>
+        <h6>Filtered by: {{listFilter}}</h6>
+        <input type='text'
+               [(ngModel)]='listFilter' />
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor='let flashcard of flashcards'>
+    <tr *ngFor='let flashcard of filteredFlashcards'>
       <td>{{ flashcard.FlashcardId }}</td>
       <td>{{ flashcard.Name }}</td>
       <td>{{ flashcard.Description }}</td>
-      <td width="120">{{ flashcard.Price | convertToCurrency: 'kr.' }}</td>
       <td *ngIf="displayImage"><img [src]="flashcard.ImageUrl" width="80" /></td>
     </tr>
   </tbody>
 </table>
+
+<button class="btn btn-primary" (click)="navigateToFlashcardform()">Create new Flashcard</button>
