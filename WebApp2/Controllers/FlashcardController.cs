@@ -30,4 +30,26 @@ public class FlashcardController : Controller
     {
         return Flashcards;
     }
+
+    [HttpPost("create")]
+    public IActionResult Create([FromBody] Flashcard newFlashcard)
+    {
+        if (newFlashcard == null)
+        {
+            return BadRequest("Invalid flashcard data.");
+        }
+        newFlashcard.FlashcardId = GetNextFlashcardId();
+        Flashcards.Add(newFlashcard);
+
+        var response = new { success = true, message = "Flashcard" + newFlashcard.Name + " created successfully" };
+        return Ok(response);
+    }
+    private static int GetNextFlashcardId()
+    {
+        if (Flashcards.Count == 0)
+        {
+            return 1;
+        }
+        return Flashcards.Max(flashcard => flashcard.FlashcardId) + 1;
+    }
 }
