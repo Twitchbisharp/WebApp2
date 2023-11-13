@@ -13,7 +13,6 @@ export class FlashcardformComponent {
   constructor(private _formbuilder: FormBuilder, private _router: Router) {
     this.flashcardForm = _formbuilder.group({
       name: ['', Validators.required],
-      price: [0, Validators.required],
       description: [''],
       imageUrl: ['']
     });
