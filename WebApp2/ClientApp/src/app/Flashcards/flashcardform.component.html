@@ -1,4 +1,4 @@
-<h2>Create Flashcard</h2>
+<h2>{{isEditMode ? 'Update' : 'Create'}}Create Flashcard</h2>
 
 <form [formGroup]="flashcardForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
@@ -14,5 +14,6 @@
     <input type="text" id="imageUrl" formControlName="imageUrl" class="form-control" />
   </div>
   <button class="btn-primary btn" type="submit" [disabled]="flashcardForm.invalid">Create Flashcard</button>
+      {{isEditMode ? 'Update' : 'Create'}}Flashcard
   <button class="btn btn-secondary" (click)="backToFlashcards()">Cancel</button>
 </form>

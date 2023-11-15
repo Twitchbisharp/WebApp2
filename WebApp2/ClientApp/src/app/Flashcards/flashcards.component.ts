@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IFlashcard } from './flashcard';
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { ActivatedRoute, }
 
 @Component({
   selector: 'app-flashcards-component',
