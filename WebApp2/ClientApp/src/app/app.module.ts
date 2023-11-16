@@ -31,6 +31,7 @@ import { FlashcardformComponent } from "./Flashcards/flashcardform.component";
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'flashcards', component: FlashcardsComponent },
       { path: 'flashcardform', component: FlashcardformComponent },
+      { path: 'flashcardform/:mode/:id', component: FlashcardformComponent },
       { path: "**", redirectTo: "", pathMatch: "full"} // This must be the last one in this list
     ])
   ],

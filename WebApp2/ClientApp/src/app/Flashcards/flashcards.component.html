@@ -17,6 +17,7 @@
         <input type='text'
                [(ngModel)]='listFilter' />
       </th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -25,8 +26,14 @@
       <td>{{ flashcard.Name }}</td>
       <td>{{ flashcard.Description }}</td>
       <td *ngIf="displayImage"><img [src]="flashcard.ImageUrl" width="80" /></td>
+      <td>
+        <a [routerLink]="['/flashcardform', 'edit', flashcard.FlashcardId]">Update</a> 
+        <a class="delete-link" (click)="deleteFlashcard(flashcard)" style="cursor: pointer;"> Delete </a>
+      </td>
     </tr>
   </tbody>
 </table>
 
-<button class="btn btn-primary" (click)="navigateToFlashcardform()">Create new Flashcard</button>
+<!--<button class="btn btn-primary" (click)="navigateToFlashcardform()">Create new Flashcard</button>-->
+<button class="btn btn-primary" [routerLink]="['/flashcardform', 'create', -1]">Create new Flashcard</button>
+

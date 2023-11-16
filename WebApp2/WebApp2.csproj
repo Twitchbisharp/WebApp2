@@ -27,6 +27,7 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\Flashcards\flashcard.ts" />
     <None Remove="ClientApp\src\app\Flashcards\flashcardform.component.ts" />
+    <None Remove="ClientApp\src\app\Flashcards\flashcards.service.ts" />
     <None Remove="ClientApp\src\app\shared\convert-to-currency.pipe.ts" />
   </ItemGroup>
 
@@ -35,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\Flashcards\flashcards.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Flashcards\flashcard.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Flashcards\flashcardform.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\convert-to-currency.pipe.ts" />

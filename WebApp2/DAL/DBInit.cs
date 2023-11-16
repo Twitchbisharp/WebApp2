@@ -13,6 +13,20 @@ public static class DBInit
         context.Database.EnsureCreated();
 
         // Inserting data in DB
-        if (!context.Flashcards.Any());
+        if (!context.Flashcards.Any())
+        {
+            var flashcards = new List<Flashcard>()
+            {
+                new Flashcard()
+                {
+                    FlashcardId = 1,
+                    Name = "Test",
+                    Description = "Test",
+                    ImageUrl = "test.jpg"
+                }
+            };
+            context.Flashcards.AddRange(flashcards);
+            context.SaveChanges();
+        }
  }
 }
