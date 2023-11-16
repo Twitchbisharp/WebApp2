@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IFlashcard } from './flashcard';
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { ActivatedRoute, }
+import { FlashcardService } from "./flashcards.service";
 
 @Component({
   selector: 'app-flashcards-component',
@@ -15,7 +15,7 @@ import { ActivatedRoute, }
     // listFilter: string = '';
     flashcards: IFlashcard[] = [];
 
-    constructor(private _http: HttpClient, private _router: Router) { }
+  constructor(private _flashcardService: FlashcardService, private _http: HttpClient, private _router: Router) { }
 
     private _listFilter: string = '';
     get listFilter(): string {
@@ -27,8 +27,8 @@ import { ActivatedRoute, }
       this.filteredFlashcards = this.performFilter(value);
     }
 
-    getFlashcards(): void {
-      this._http.get<IFlashcard[]>("api/flashcard").subscribe(data => {
+  getFlashcards(): void {
+    this._flashcardService.getFlashcards().subscribe(data => {
         console.log('All', JSON.stringify(data));
         this.flashcards = data;
         this.filteredFlashcards = this.flashcards;
@@ -36,9 +36,9 @@ import { ActivatedRoute, }
     }
 
     deleteFlashcard(flashcard: IFlashcard): void {
-      const confirmDelete = confirm('Are you sure you want to delete "${flashcard.Name}"?');
+      const confirmDelete = confirm(`Are you sure you want to delete "${flashcard.Name}"?`);
       if (confirmDelete) {
-        this._flashcardService.DeleteFlashcard(flashcard.FlashcardId)
+        this._flashcardService.deleteFlashcard(flashcard.FlashcardId)
           .subscribe(
             (response) => {
               if (response.success) {
@@ -88,9 +88,6 @@ import { ActivatedRoute, }
 
   ngOnInit(): void {
     console.log('ItemsConponent created');
-  }
-
-  ngOnInit(): void {
     this.getFlashcards();
   }
 

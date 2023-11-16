@@ -13,7 +13,6 @@
     <label for="ImageUrl">Image URL:</label>
     <input type="text" id="imageUrl" formControlName="imageUrl" class="form-control" />
   </div>
-  <button class="btn-primary btn" type="submit" [disabled]="flashcardForm.invalid">Create Flashcard</button>
-      {{isEditMode ? 'Update' : 'Create'}}Flashcard
+  <button class="btn-primary btn" type="submit" [disabled]="flashcardForm.invalid">{{isEditMode ? 'Update' : 'Create'}} Flashcard</button>
   <button class="btn btn-secondary" (click)="backToFlashcards()">Cancel</button>
 </form>

@@ -8,10 +8,9 @@ namespace WebApp2.Controllers;
 [Route("api/[controller]")]
 public class FlashcardController : Controller
 {
-    private readonly IFlashcardRepository flashcardRepository;
-    private readonly ILogger<FlashcardController> logger;
-    private IFlashcardRepository _flashcardRepository;
-    private ILogger<FlashcardController> _logger;
+    
+    private readonly IFlashcardRepository _flashcardRepository;
+    private readonly ILogger<FlashcardController> _logger;
 
     public FlashcardController(IFlashcardRepository flashcardRepository, ILogger<FlashcardController> logger)
     {
@@ -55,9 +54,9 @@ public class FlashcardController : Controller
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> getFlashcardbyId(int id)
+    public async Task<IActionResult> GetFlashcardbyId(int id)
     {
-        var flashcard = await _flashcardRepository.GetFlashcardbyId(id);
+        var flashcard = await _flashcardRepository.GetFlashcardById(id);
         if (flashcard == null)
         {
             _logger.LogError("[FlashcardController] Flashcard list not found while executing _flashcardRepository.GetAll()");
@@ -67,7 +66,7 @@ public class FlashcardController : Controller
     }
 
     [HttpPut("update/{id}")]
-    public async Task<IActionResult> update(Flashcard newFlashcard)
+    public async Task<IActionResult> Update(Flashcard newFlashcard)
     {
         if(newFlashcard == null)
         {

@@ -13,7 +13,7 @@ export class FlashcardformComponent {
   isEditMode: boolean = false;
   flashcardId: number = -1;
 
-  constructor(private _formbuilder: FormBuilder, private _router: ActivatedRoute) {
+  constructor(private _flashcardService: FlashcardService, private _formbuilder: FormBuilder, private _router: Router, private _route: ActivatedRoute) {
     this.flashcardForm = _formbuilder.group({
       name: ['', Validators.required],
       description: [''],
@@ -26,6 +26,7 @@ export class FlashcardformComponent {
     console.log(this.flashcardForm);
     console.log("The flaschard " + this.flashcardForm.value.name + " is created.");
     console.log(this.flashcardForm.touched);
+    const newFlashcard = this.flashcardForm.value;
 
     if (this.isEditMode) {
       this._flashcardService.updateFlashcard(this.flashcardId, newFlashcard)
@@ -40,7 +41,7 @@ export class FlashcardformComponent {
         });
     }
     else {
-      this._flashcardService.createflashcard(newFlashcard)
+      this._flashcardService.createFlashcard(newFlashcard)
         .subscribe(response => {
           if (response.success) {
             console.log(response.message);
