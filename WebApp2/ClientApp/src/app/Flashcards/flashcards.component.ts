@@ -9,30 +9,48 @@ import { ActivatedRoute, }
   templateUrl: './flashcards.component.html',
   styles: ['thead {color: blue;}']
 })
-export class FlashcardsComponent {
-  viewTitle: string = 'Table'
-  displayImage: boolean = true;
-  // listFilter: string = '';
-  flashcards: IFlashcard[] = [];
+  export class FlashcardsComponent {
+    viewTitle: string = 'Table'
+    displayImage: boolean = true;
+    // listFilter: string = '';
+    flashcards: IFlashcard[] = [];
 
-  constructor(private _http: HttpClient, private _router: Router) { }
+    constructor(private _http: HttpClient, private _router: Router) { }
 
-  private _listFilter: string = '';
-  get listFilter(): string {
-    return this._listFilter;
-  }
-  set listFilter(value: string) {
-    this._listFilter = value;
-    console.log('In setter:', value)
-    this.filteredFlashcards = this.performFilter(value);
-  }
+    private _listFilter: string = '';
+    get listFilter(): string {
+      return this._listFilter;
+    }
+    set listFilter(value: string) {
+      this._listFilter = value;
+      console.log('In setter:', value)
+      this.filteredFlashcards = this.performFilter(value);
+    }
 
-  getFlashcards(): void {
-    this._http.get<IFlashcard[]>("api/flashcard").subscribe(data => {
-      console.log('All', JSON.stringify(data));
-      this.flashcards = data;
-      this.filteredFlashcards = this.flashcards;
-    })
+    getFlashcards(): void {
+      this._http.get<IFlashcard[]>("api/flashcard").subscribe(data => {
+        console.log('All', JSON.stringify(data));
+        this.flashcards = data;
+        this.filteredFlashcards = this.flashcards;
+      })
+    }
+
+    deleteFlashcard(flashcard: IFlashcard): void {
+      const confirmDelete = confirm('Are you sure you want to delete "${flashcard.Name}"?');
+      if (confirmDelete) {
+        this._flashcardService.DeleteFlashcard(flashcard.FlashcardId)
+          .subscribe(
+            (response) => {
+              if (response.success) {
+                console.log(response.message);
+                this.filteredFlashcards = this.filteredFlashcards.filter(i => i !== flashcard);
+              }
+            },
+            (error) => {
+              console.error('Error deleting flashcard', error);
+            });
+
+      }
   }
   /*
   flashcards: IFlashcard[] = [
@@ -72,5 +90,8 @@ export class FlashcardsComponent {
     console.log('ItemsConponent created');
   }
 
+  ngOnInit(): void {
+    this.getFlashcards();
+  }
 
 }
