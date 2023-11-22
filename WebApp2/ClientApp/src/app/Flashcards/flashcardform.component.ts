@@ -76,9 +76,9 @@ export class FlashcardformComponent {
         (flashcard: any) => {
           console.log('retrived flashcard: ', flashcard);
           this.flashcardForm.patchValue({
-            name: flashcard.Name,
-            description: flashcard.Description,
-            imageUrl: flashcard.ImageUrl
+            name: flashcard.name,
+            description: flashcard.description,
+            imageUrl: flashcard.imageUrl
           });
         },
         (error: any) => {

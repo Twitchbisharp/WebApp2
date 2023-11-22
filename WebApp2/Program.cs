@@ -11,11 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//builder.Services.AddControllers().AddNewtonsoftJson(options =>
-//{
-  //  options.SerializerSettings.ReferenceLoopHandling =
-   // Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-//});
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ReferenceLoopHandling =
+    Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+});
 
 builder.Services.AddDbContext<FlashcardDbContext>(options =>
 {
@@ -57,7 +57,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 .AddDefaultTokenProviders();
 */
 builder.Services.AddScoped<IFlashcardRepository, FlashcardRepository>();
-//builder.Services.AddScoped<IPlayRepository, PlayRepository>();
+builder.Services.AddScoped<ICollectionRepository, CollectionRepository>();
 
 builder.Services.AddRazorPages();
 //OLD

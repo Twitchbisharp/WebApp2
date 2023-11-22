@@ -9,8 +9,11 @@ public class FlashcardDbContext : DbContext
     {
         //Database.EnsureCreated();
     }
-    
+    // Creates tables in the Database
     public DbSet<Flashcard> Flashcards { get; set; }
+    public DbSet<Contributer> Contributers { get; set; }
+    public DbSet<Collection> Collections{ get; set; }
+    public DbSet<CollectionFlashcard> CollectionFlashcards{ get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

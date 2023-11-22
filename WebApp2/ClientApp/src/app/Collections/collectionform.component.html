@@ -1,0 +1,11 @@
+<h2>{{isEditMode ? 'Update' : 'Create'}}Create Collection</h2>
+
+<form [formGroup]="collectionForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="collectionName">Name:</label>
+    <input type="text" id="collectionName" formControlName="collectionName" class="form-control" />
+  </div>
+
+  <button class="btn-primary btn" type="submit" [disabled]="collectionForm.invalid">{{isEditMode ? 'Update' : 'Create'}} Collection</button>
+  <button class="btn btn-secondary" (click)="backToCollections()">Cancel</button>
+</form>
