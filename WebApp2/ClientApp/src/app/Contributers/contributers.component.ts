@@ -36,7 +36,7 @@ import { ContributerService } from "./contributers.service";
     }
 
     deleteContributer(contributer: IContributer): void {
-      const confirmDelete = confirm(`Are you sure you want to delete "${contributer.contributerName}"?`);
+      const confirmDelete = confirm(`Are you sure you want to delete "${contributer.name}"?`);
       if (confirmDelete) {
         this._contributerService.deleteContributer(contributer.contributerId)
           .subscribe(
@@ -60,7 +60,7 @@ import { ContributerService } from "./contributers.service";
     filterBy = filterBy.toLowerCase();
     console.log("Performing filter on ", this.filteredContributers)
     return this.contributers.filter((contributers: IContributer) =>
-      contributers.contributerName.toLowerCase().includes(filterBy));
+      contributers.name.toLowerCase().includes(filterBy));
   }
 
   toggleImage(): void {

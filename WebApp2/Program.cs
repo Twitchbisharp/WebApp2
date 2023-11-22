@@ -58,6 +58,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 */
 builder.Services.AddScoped<IFlashcardRepository, FlashcardRepository>();
 builder.Services.AddScoped<ICollectionRepository, CollectionRepository>();
+builder.Services.AddScoped<IContributerRepository, ContributerRepository>();
 
 builder.Services.AddRazorPages();
 //OLD

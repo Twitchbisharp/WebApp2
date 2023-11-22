@@ -15,7 +15,6 @@ namespace WebApp2.Models
         public int FlashcardId { get; set; }
 
         //Navigation property
-
         public virtual Flashcard Flashcard { get; set; } = default!;
 
         [JsonPropertyName("CollectionId")]

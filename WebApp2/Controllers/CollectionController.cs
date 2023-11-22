@@ -68,8 +68,7 @@ public class CollectionController : Controller
     [HttpPut("update/{id}")]
     public async Task<IActionResult> Update(Collection newCollection)
     {
-        //// Add date updater
-        newCollection.CollectionDate = DateTime.Now.ToString("dd/MM/yyyy");
+     
         _logger.LogInformation("new collection: ", newCollection);
         if (newCollection == null)
         {

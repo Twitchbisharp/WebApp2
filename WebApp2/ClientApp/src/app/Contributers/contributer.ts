@@ -1,5 +1,5 @@
 export interface IContributer {
   contributerId: number;
-  contributerName: string;
+  name: string;
   /*collections: any;*/
 }

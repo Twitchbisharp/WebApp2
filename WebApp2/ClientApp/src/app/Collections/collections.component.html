@@ -31,7 +31,7 @@
       <td>{{ collection.collectionName}}</td>
       <td>{{ collection.collectionDate}}</td>
       <td>{{ collection.totalFlashcards}}</td>
-      <td>{{ collection.collectionFlashcard[0].flashcard.name }}</td><!--Syntax for referencing attributes withing foreign key tables-->
+      <td>{{ collection.collectionFlashcard[0].flashcard.name}}</td><!--Syntax for referencing attributes withing foreign key tables-->
       <td>
         <button class="btn btn-primary" [routerLink]="['/collectionform', 'edit', collection.collectionId]">Update</button>
         <button class="delete-link btn btn-danger" (click)="deleteCollection(collection)" style="cursor: pointer;"> Delete </button>
