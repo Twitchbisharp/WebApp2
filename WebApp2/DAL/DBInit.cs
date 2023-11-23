@@ -20,13 +20,42 @@ public static class DBInit
             var flashcards = new List<Flashcard>()
             {
                 new Flashcard() // bare fjern disse når dummy data legges til
-                {
-                    FlashcardId = 1,        
-                    Name = "Test",
-                    Description = "Test",
-                    ImageUrl = "test.jpg"
-                }
-            };
+                    {
+                        FlashcardId = 1,
+                        Name = "Test",
+                        Description = "Test",
+                        ImageUrl = "test.jpg"
+                    },
+                 new Flashcard() // bare fjern disse når dummy data legges til
+                    {
+                        FlashcardId = 2,
+                        Name = "Test",
+                        Description = "Test",
+                        ImageUrl = "test.jpg"
+                    },
+                  new Flashcard() // bare fjern disse når dummy data legges til
+                    {
+                        FlashcardId = 3,
+                        Name = "Test",
+                        Description = "Test",
+                        ImageUrl = "test.jpg"
+                    },
+                   new Flashcard() // bare fjern disse når dummy data legges til
+                    {
+                        FlashcardId = 4,
+                        Name = "Test",
+                        Description = "Test",
+                        ImageUrl = "test.jpg"
+                    },
+                   new Flashcard() // bare fjern disse når dummy data legges til
+                    {
+                        FlashcardId = 5,
+                        Name = "Test",
+                        Description = "Test",
+                        ImageUrl = "test.jpg"
+                    },
+                };
+               
             context.Flashcards.AddRange(flashcards);
             context.SaveChanges();
         }
