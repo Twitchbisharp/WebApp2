@@ -15,12 +15,12 @@ namespace WebApp2.Models
         [JsonPropertyName("CollectionName")]
         public string CollectionName { get; set; } = string.Empty;
 
-        //[JsonPropertyName("ContributerId")]
-        //public int ContributerId { get; set; }
+        [JsonPropertyName("ContributerId")]
+        public int ContributerId { get; set; }
 
-        ////Navigation property
-        //[JsonPropertyName("Contributers")]
-        //public virtual List<Contributer>? Contributers { get; set; }
+        //Navigation property
+        [JsonPropertyName("Contributers")]
+        public virtual Contributer? Contributers { get; set; } = default!;
 
         //[JsonPropertyName("CollectionFlashcardId")]
         //public int CollectionFlashcardId { get; set; }

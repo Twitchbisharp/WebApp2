@@ -12,9 +12,9 @@ namespace WebApp2.Models
         [JsonPropertyName("Name")]
         public string Name { get; set; } = string.Empty;
 
-        //// Navigation property
-        //[JsonPropertyName("Collections")]
-        //public virtual List<Collection>? Collections{ get; set; }
+        // Navigation property
+        [JsonPropertyName("Collections")]
+        public virtual Collection? Collections { get; set; } = default!;
 
     }
 

@@ -20,8 +20,8 @@
       <th>Collection Name</th>
       <th>Collection Date</th>
       <th>Total Flashcards</th>
-
-      <th>Collection Flashcard name</th>
+      <th>Contributer Id</th>
+      <th>Flashcard name</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -31,7 +31,9 @@
       <td>{{ collection.collectionName}}</td>
       <td>{{ collection.collectionDate}}</td>
       <td>{{ collection.totalFlashcards}}</td>
-      <td>{{ collection.collectionFlashcard[0].flashcard.name}}</td><!--Syntax for referencing attributes withing foreign key tables-->
+      <td>{{ collection.contributerId}}</td>
+      <td *ngIf='collection.collectionFlashcard.length > 0; else elseBlock'>{{ collection.collectionFlashcard[0].flashcard.name}}</td><!--Syntax for referencing attributes withing foreign key tables-->
+      <ng-template #elseBlock><td></td></ng-template> <!--https://angular.io/api/common/NgIf-->
       <td>
         <button class="btn btn-primary" [routerLink]="['/collectionform', 'edit', collection.collectionId]">Update</button>
         <button class="delete-link btn btn-danger" (click)="deleteCollection(collection)" style="cursor: pointer;"> Delete </button>

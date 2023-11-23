@@ -69,7 +69,6 @@ public class CollectionController : Controller
     public async Task<IActionResult> Update(Collection newCollection)
     {
      
-        _logger.LogInformation("new collection: ", newCollection);
         if (newCollection == null)
         {
             return BadRequest("Invalid collection data");

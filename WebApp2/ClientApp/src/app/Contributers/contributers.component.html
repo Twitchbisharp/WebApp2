@@ -19,22 +19,14 @@
       <th>Contributer Id</th>
       <th>Contributer Name</th>
       <th>Contributer collections</th>
-      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor='let contributer of filteredContributers'>
-      <td>{{ contributer.contributerId}}</td>
-      <td>{{ contributer.name}}</td>
-      <!--<td>{{ contributer.collections}}</td>--><!--May need to be a for-loop-->
-
-      <td>
-        <button class="btn btn-primary" [routerLink]="['/contributerform', 'edit', contributer.contributerId]">Update</button>
-        <button class="delete-link btn btn-danger" (click)="deleteContributer(contributer)" style="cursor: pointer;"> Delete </button>
-      </td>
+      <td>{{ contributer.contributerId }}</td>
+      <td>{{ contributer.name }}</td>
+      <td *ngIf='contributer.collections != null'>{{ contributer.collections.collectionName}}</td><!--May need to be a for-loop-->
     </tr>
   </tbody>
 </table>
 
-<!--<button class="btn btn-primary" (click)="navigateToContributerform()">Create new Contributer</button>-->
-<button class="btn btn-primary" [routerLink]="['/contributerform', 'create', -1]">Create new Contributer</button>

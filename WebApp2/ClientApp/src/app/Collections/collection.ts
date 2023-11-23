@@ -4,4 +4,6 @@ export interface ICollection {
   collectionName: string;
   collectionFlashcard: any;
   totalFlashcards: number;
+  contributerId: number;
+  contributers: any;
 }

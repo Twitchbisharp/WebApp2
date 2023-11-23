@@ -6,7 +6,6 @@ using Serilog.Events;
 using MyShop.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
-//var connectionString = builder.Configuration.GetConnectionString("FlashcardDbContextConnection") ?? throw new InvalidOperationException("Connection string 'FlashcardDbContextConnection' not found.");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -24,38 +23,7 @@ builder.Services.AddDbContext<FlashcardDbContext>(options =>
 });
 
 
-//OLD
-//builder.Services.AddDefaultIdentity<IdentityUser>()
 
-//.AddEntityFrameworkStores<FlashcardDbContext>();
-
-
-
-
-//NEW
-/*
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
-{
-    //Password settings
-    options.Password.RequireDigit = true;
-    options.Password.RequiredLength = 8;
-    options.Password.RequireNonAlphanumeric = true;
-    options.Password.RequireUppercase = true;
-    options.Password.RequireLowercase = true;
-    options.Password.RequiredUniqueChars = 6;
-
-    //Lockout
-    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-    options.Lockout.MaxFailedAccessAttempts = 5;
-    options.Lockout.AllowedForNewUsers = true;
-
-    //User settings
-    options.User.RequireUniqueEmail = true;
-})
-.AddEntityFrameworkStores<FlashcardDbContext>()
-//.AddDefaultUI()
-.AddDefaultTokenProviders();
-*/
 builder.Services.AddScoped<IFlashcardRepository, FlashcardRepository>();
 builder.Services.AddScoped<ICollectionRepository, CollectionRepository>();
 builder.Services.AddScoped<IContributerRepository, ContributerRepository>();
@@ -101,8 +69,6 @@ app.UseStaticFiles();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
-
-//app.UseRouting();
 
 app.UseAuthentication();
 
