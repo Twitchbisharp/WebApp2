@@ -8,7 +8,7 @@
   <div class="form-group">
     <label for="collectionFlashcard">Add flashcards:</label>
     <br />
-    <select multiple name="selected" (formControlName)="selected" style="width: 300px;" >
+    <select multiple formControlName="flashcards" style="width: 300px;">
       <option *ngFor="let flashcard of flashcards" [ngValue]="flashcard">{{flashcard.flashcardId}}. Term: {{flashcard.name}}, Definition: {{flashcard.description}}</option>
     </select>
   </div>
