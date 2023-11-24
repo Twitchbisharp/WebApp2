@@ -15,38 +15,46 @@ export class CollectionformComponent {
   isEditMode: boolean = false;
   collectionId: number = -1;
   flashcards: IFlashcard[] = [];
+  selected: IFlashcard[] = [];
 
 
   constructor(private _collectionService: CollectionService, private _flashcardService: FlashcardService, private _formbuilder: FormBuilder, private _router: Router, private _route: ActivatedRoute) {
     this.collectionForm = _formbuilder.group({
       collectionName: ['', Validators.required],
       collectionDate: [''],
+      totalFlashcards: [''],
+      flashcards: [''],
       //collectionFlashcard: [''],
       //contributerId: [''],
       //contributers: [''],
     });
 
-    // 
+    // Automatic data insertion
     this.collectionForm.patchValue({
-      collectionDate: new Date().getDate() + "." + new Date().getMonth() + "." + new Date().getFullYear(),
+      collectionDate: new Date().getDate() + "." + (new Date().getMonth() + 1) + "." + new Date().getFullYear(),
+      totalFlashcards: this.selected.length,
       flashcards: this._flashcardService.getFlashcards().subscribe(data => {
-        console.log('All', JSON.stringify(data));
-        console.log(data);
+        console.log('All', data);
         this.flashcards = data;
-      })
+        console.log("selected flashcards:", this.selected);
+      }),
+
     })
   }
 
-
+  onChange(value: any) {
+    console.log("OnChange value: ", value);
+  }
 
   onSubmit() {
     console.log("CollectionCreate form submitted:");
-    console.log(this.collectionForm);
+    console.log("CollectionForm" + this.collectionForm);
     console.log("The collection " + this.collectionForm.value.collectionName + " is created.");
-    console.log(this.collectionForm.touched);
+    console.log("Touched? " + this.collectionForm.touched);
+    console.log("Selected" + this.selected)
     const newCollection = this.collectionForm.value;
-    
-    
+
+
 
     if (this.isEditMode) {
       this._collectionService.updateCollection(this.collectionId, newCollection)

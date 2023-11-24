@@ -71,9 +71,13 @@ import { CollectionService } from "./collections.service";
     this._router.navigate(['/collectionform'])
   }
 
+  navigateToCollectionFlashcard(collectionId: number): void {
+    this._router.navigate(['/collectionFlashcard']);
+      console.log("Navigated to collectionFlashcard")
+  }
+
   ngOnInit(): void {
     console.log('CollectionConponent created');
     this.getCollections();
   }
-
 }

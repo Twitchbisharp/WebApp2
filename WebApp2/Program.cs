@@ -27,6 +27,7 @@ builder.Services.AddDbContext<FlashcardDbContext>(options =>
 builder.Services.AddScoped<IFlashcardRepository, FlashcardRepository>();
 builder.Services.AddScoped<ICollectionRepository, CollectionRepository>();
 builder.Services.AddScoped<IContributerRepository, ContributerRepository>();
+builder.Services.AddScoped<ICollectionFlashcardRepository, CollectionFlashcardRepository>();
 
 builder.Services.AddRazorPages();
 //OLD

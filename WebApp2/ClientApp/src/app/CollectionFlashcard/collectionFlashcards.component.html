@@ -1,0 +1,38 @@
+<h1 id="tableLabel">List of Flashcards in {{collectionFlashcards[0].collection.collectionName}}</h1>
+
+<div class="container row">   <!--Row of actions-->
+  <div class="col-md-4 p-0">  <!--Column 1-->
+    <button class="btn btn-primary" (click)="getCollections()">Get Collections</button>
+  </div>
+  <div class="d-flex flex-row justify-content-end col-md-4"> <!--Column 2 with content aligned right-->
+    <h6>Filtered by: {{listFilter}}</h6>  <!--Dynamic filter visualisation-->
+  </div>
+  <div class="col-md-4"> <!--Column 3-->
+    <input type='text' [(ngModel)]='listFilter' /> <!--Input field for filter-->
+  </div>
+</div>
+
+<table class='table table-striped' aria-labelledby="tableLabel">
+  <thead>
+    <tr>
+      <th>Flashcard Id</th>
+      <th>Flashcard Name</th>
+      <th>Description</th>
+      <th>Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let collectionFlashcard of filteredCollectionFlashcards'>
+      <td> {{ collectionFlashcard.flashcardId }}</td>
+      <td> {{ collectionFlashcard.flashcard.name}}</td>
+      <td> {{ collectionFlashcard.flashcard.description}}</td>
+      <td> {{ collectionFlashcard.flashcard.imageUrl}}</td>
+      <!--<td> {{ collectionFlashcard.collectionId }}</td>
+      <td> {{ collectionFlashcard.collection.collectionName }}</td>-->
+
+
+    </tr>
+  </tbody>
+</table>
+
+<button class="btn btn-primary" [routerLink]="['/collectionform', 'create', -1]">Create new Flashcard</button>

@@ -26,9 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\CollectionFlashcard\collectionFlashcards.service.ts" />
     <None Remove="ClientApp\src\app\Collections\collection.ts" />
-    <None Remove="ClientApp\src\app\Collections\CollectionFlashcard\collectionFlashcard.service.ts" />
-    <None Remove="ClientApp\src\app\Collections\CollectionFlashcard\collectionFlashcard.ts" />
+    <None Remove="ClientApp\src\app\CollectionFlashcard\collectionFlashcard.ts" />
     <None Remove="ClientApp\src\app\Collections\collectionform.component.ts" />
     <None Remove="ClientApp\src\app\Collections\collections.service.ts" />
     <None Remove="ClientApp\src\app\Contributers\contributer.ts" />
@@ -45,8 +45,8 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\Collections\collection.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\Collections\CollectionFlashcard\collectionFlashcard.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\Collections\CollectionFlashcard\collectionFlashcard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\CollectionFlashcard\collectionFlashcard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\CollectionFlashcard\collectionFlashcards.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Collections\collections.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Collections\collectionform.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Contributers\contributer.ts" />

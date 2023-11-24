@@ -1,4 +1,4 @@
-<h1 id="tableLabel">List of Collections({{viewTitle}} View)</h1>
+<h1 id="tableLabel">List of Collections</h1>
 
 <div class="container row">   <!--Row of actions-->
   <div class="col-md-4 p-0">  <!--Column 1-->
@@ -21,6 +21,7 @@
       <th>Collection Date</th>
       <th>Total Flashcards</th>
       <th>Contributer Id</th>
+      <th>Contributer Name</th>
       <th>Flashcard name</th>
       <th>Actions</th>
     </tr>
@@ -28,11 +29,15 @@
   <tbody>
     <tr *ngFor='let collection of filteredCollections'>
       <td>{{ collection.collectionId }}</td>
-      <td>{{ collection.collectionName}}</td>
+      <!--<td>{{ collection.collectionName}}</td>-->
+      <td>
+          <a style="cursor: pointer;" (click)="navigateToCollectionFlashcard(collection.collectionId)">{{ collection.collectionName }}</a>
+      </td>
       <td>{{ collection.collectionDate}}</td>
       <td>{{ collection.totalFlashcards}}</td>
       <td>{{ collection.contributerId}}</td>
-      <td *ngIf='collection.collectionFlashcard.length > 0; else elseBlock'>{{ collection.collectionFlashcard[0].flashcard.name}}</td><!--Syntax for referencing attributes withing foreign key tables-->
+      <td>{{ collection.contributers.name}}</td>
+      <td *ngIf='collection.collectionFlashcard.length > 0; else elseBlock'><span *ngFor='let flashcard of collection.collectionFlashcard'>{{flashcard.name}}</span></td><!--Syntax for referencing attributes withing foreign key tables-->
       <ng-template #elseBlock><td></td></ng-template> <!--https://angular.io/api/common/NgIf-->
       <td>
         <button class="btn btn-primary" [routerLink]="['/collectionform', 'edit', collection.collectionId]">Update</button>

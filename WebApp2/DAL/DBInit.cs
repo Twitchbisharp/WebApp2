@@ -29,7 +29,7 @@ public static class DBInit
                  new Flashcard() // bare fjern disse når dummy data legges til
                     {
                         FlashcardId = 2,
-                        Name = "Test",
+                        Name = "something",
                         Description = "Test",
                         ImageUrl = "test.jpg"
                     },
@@ -100,7 +100,7 @@ public static class DBInit
             var collectionFlashcards = new List<CollectionFlashcard>()
             {
                 new CollectionFlashcard() { CollectionId = 1, FlashcardId = 1},     // Bare fjern denne når dummy data kommer, men behold syntaks
-                
+                new CollectionFlashcard() { CollectionId = 1, FlashcardId = 2 },
             };
             context.AddRange(collectionFlashcards);
             context.SaveChanges();
