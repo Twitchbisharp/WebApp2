@@ -1,8 +1,11 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild, ElementRef } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CollectionService } from './collections.service';
-import { IFlashcard } from '../Flashcards/flashcard';
+import { IFlashcard } from '../Flashcards/flashcard';;
+import { ICollection } from './collection';
+import { ICollectionFlashcard } from '../CollectionFlashcard/collectionFlashcard';
+import { CollectionFlashcardService } from '../CollectionFlashcard/collectionFlashcards.service';
 import { FlashcardService } from '../Flashcards/flashcards.service';
 import { forkJoin } from 'rxjs';
 
@@ -16,18 +19,35 @@ export class CollectionformComponent {
   isEditMode: boolean = false;
   collectionId: number = -1;
   flashcards: IFlashcard[] = [];
+  originalCollection: ICollection[] = [];
+  collectionFlashcard: ICollectionFlashcard[] = [];
+
+  dropdownOptions: IFlashcard[] = this.flashcards;
+  selectedFlashcards: IFlashcard[] = [];
+
+  
 
   constructor(
     private _collectionService: CollectionService,
     private _flashcardService: FlashcardService,
+    private _collectionFlashcardService: CollectionFlashcardService,
     private _formbuilder: FormBuilder,
     private _router: Router,
     private _route: ActivatedRoute
   ) {
     this.collectionForm = _formbuilder.group({
-      collectionName: ['', Validators.required],
+      collectionId: [''],
+      collectionDate: new Date().getDate() + "." + (new Date().getMonth() + 1) + "." + new Date().getFullYear(),
+      collectionName: [''],
+      collectionFlashcard: [''],
+      totalFlashcards: [''],
+      contributerId: [''],  
+      contributers: [''],
       flashcards: [[]],
+      selectedFlashcards: [''],
     });
+
+
 
     // Automatic data insertion
     forkJoin([
@@ -35,8 +55,9 @@ export class CollectionformComponent {
     ]).subscribe(
       ([flashcards]) => {
         this.flashcards = flashcards;
+        console.log("Retrieved flashcards: ", flashcards)
         this.collectionForm.patchValue({
-          collectionDate: new Date().getDate() + "." + (new Date().getMonth() + 1) + "." + new Date().getFullYear(),
+          /*collectionDate: new Date().getDate() + "." + (new Date().getMonth() + 1) + "." + new Date().getFullYear(),*/
           flashcards: [],
         });
       },
@@ -47,14 +68,18 @@ export class CollectionformComponent {
   }
 
   onSubmit() {
-    console.log("CollectionCreate form submitted:");
-    console.log("The collection " + this.collectionForm.value.collectionName + " is created.");
-    console.log("Touched? " + this.collectionForm.touched);
-    console.log("Selected", this.collectionForm.value.flashcards);
+    console.log("Selected Flashcard: ", this.collectionForm.value.selectedFlashcards, this.flashcards, this.collectionFlashcard, this.collectionForm.value.flashcards)
+    for (let i of this.collectionFlashcard) {
+      this._collectionFlashcardService.addCollectionFlashcard(i)
+      console.log("Created collectionflashcard", i)
+    }
+
 
     const newCollection = this.collectionForm.value;
+    console.log("newCollection: ", newCollection)
 
     if (this.isEditMode) {
+      console.log("sending collection: ", newCollection)
       this._collectionService.updateCollection(this.collectionId, newCollection)
         .subscribe(response => this.handleResponse(response));
     } else {
@@ -92,10 +117,15 @@ export class CollectionformComponent {
     this._collectionService.getCollectionById(collectionId)
       .subscribe(
         (collection: any) => {
-          console.log('retrieved collection: ', collection);
+          this.originalCollection = collection;
+          console.log('retrieved collection: ', collection)
           this.collectionForm.patchValue({
             collectionName: collection.collectionName,
-            flashcards: collection.flashcards, // Assuming 'flashcards' is the property name in your collection model
+            collectionFlashcard: collection.collectionFlashcard, 
+            collectionDate: collection.collectionDate,
+            totalFlashcards: collection.totalFlashcards,
+            contributerId: collection.contributerId,
+            contributers: collection.contributers,
           });
         },
         (error: any) => {

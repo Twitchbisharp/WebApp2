@@ -1,6 +1,6 @@
 export interface ICollectionFlashcard {
-  collection: any;
+  collection?: any;
   collectionId: number;
-  flashcard: any;
+  flashcard?: any;
   flashcardId: number;
 }
