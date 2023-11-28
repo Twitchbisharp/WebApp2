@@ -21,33 +21,33 @@ public class FlashcardController : Controller
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var items = await _flashcardRepository.GetAll();
-        if (items == null)
+        var flashcards = await _flashcardRepository.GetAll();
+        if (flashcards == null)
         {
-            _logger.LogError("[ItemController] Item list not found while executing _itemRepository.GetAll()");
-            return NotFound("Item list not found");
+            _logger.LogError("[FlashcardController] Flashcard list not found while executing _flashcardRepository.GetAll()");
+            return NotFound("Flashcard list not found");
         }
-        return Ok(items);
+        return Ok(flashcards);
     }
 
     [HttpPost("create")]
-    public async Task<IActionResult> Create([FromBody] Flashcard newItem)
+    public async Task<IActionResult> Create([FromBody] Flashcard newFlashcard)
     {
-        if (newItem == null)
+        if (newFlashcard == null)
         {
-            return BadRequest("Invalid item data.");
+            return BadRequest("Invalid flashcard data.");
         }
-        //newItem.ItemId = GetNextItemId();
-        bool returnOk = await _flashcardRepository.Create(newItem);
+        //newFlashcard.FlashcardId = GetNextFlashcardId();
+        bool returnOk = await _flashcardRepository.Create(newFlashcard);
 
         if (returnOk)
         {
-            var response = new { success = true, message = "Item " + newItem.Name + " created successfully" };
+            var response = new { success = true, message = "Flashcard " + newFlashcard.Name + " created successfully" };
             return Ok(response);
         }
         else
         {
-            var response = new { success = false, message = "Item creation failed" };
+            var response = new { success = false, message = "Flashcard creation failed" };
             return Ok(response);
         }
 
@@ -98,11 +98,11 @@ public class FlashcardController : Controller
     }
 }
 
-    //private static int GetNextItemId()
+    //private static int GetNextFlashcardId()
     //{
-    //    if (Items.Count == 0)
+    //    if (Flashcards.Count == 0)
     //    {
     //        return 1;
     //    }
-    //    return Items.Max(item => item.ItemId) + 1;
+    //    return Flashcards.Max(flashcard => flashcard.FlashcardId) + 1;
     //}

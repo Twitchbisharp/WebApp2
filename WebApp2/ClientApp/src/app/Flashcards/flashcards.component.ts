@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IFlashcard } from './flashcard';
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
@@ -9,10 +9,9 @@ import { FlashcardService } from "./flashcards.service";
   templateUrl: './flashcards.component.html',
   styles: ['thead {color: blue;}']
 })
-  export class FlashcardsComponent {
+export class FlashcardsComponent implements OnInit {
     viewTitle: string = 'Table'
     displayImage: boolean = true;
-    // listFilter: string = '';
     flashcards: IFlashcard[] = [];
 
   constructor(private _flashcardService: FlashcardService, private _http: HttpClient, private _router: Router) { }
@@ -30,20 +29,23 @@ import { FlashcardService } from "./flashcards.service";
   getFlashcards(): void {
     this._flashcardService.getFlashcards().subscribe(data => {
         console.log('All', JSON.stringify(data));
+        console.log(data);
         this.flashcards = data;
         this.filteredFlashcards = this.flashcards;
       })
     }
 
     deleteFlashcard(flashcard: IFlashcard): void {
-      const confirmDelete = confirm(`Are you sure you want to delete "${flashcard.Name}"?`);
+      const confirmDelete = confirm(`Are you sure you want to delete "${flashcard.name}"?`);
       if (confirmDelete) {
-        this._flashcardService.deleteFlashcard(flashcard.FlashcardId)
+        this._flashcardService.deleteFlashcard(flashcard.flashcardId)
           .subscribe(
             (response) => {
               if (response.success) {
                 console.log(response.message);
                 this.filteredFlashcards = this.filteredFlashcards.filter(i => i !== flashcard);
+                // update flashcards
+                this.getFlashcards();
               }
             },
             (error) => {
@@ -51,44 +53,29 @@ import { FlashcardService } from "./flashcards.service";
             });
 
       }
-  }
-  /*
-  flashcards: IFlashcard[] = [
-    {
-      "FlashcardId": 1,
-      "Name": "Hus",
-      "Price":150,
-      "Description": "House",
-      "ImageUrl": "assets/images/test.jpg"
-    },
-    {
-      "FlashcardId": 2,
-      "Name": "Bil",
-      "Price": 20,
-      "Description": "Car",
-      "ImageUrl": "assets/images/test.jpg"
-     //Missing image icon shows when an image is linked with no matching image
     }
-  ];*/
-  filteredFlashcards: IFlashcard[] = this.flashcards;
 
-  performFilter(filterBy: string): IFlashcard[] {
-    filterBy = filterBy.toLowerCase();
-    return this.flashcards.filter((flashcards: IFlashcard) =>
-      flashcards.Name.toLowerCase().includes(filterBy));
+
+    filteredFlashcards: IFlashcard[] = this.flashcards;
+
+    performFilter(filterBy: string): IFlashcard[] {
+      filterBy = filterBy.toLowerCase();
+      console.log("Performing filter on ", this.filteredFlashcards)
+      return this.flashcards.filter((flashcard: IFlashcard) =>
+        flashcard.name.toLowerCase().includes(filterBy)); 
+    }
+
+    toggleImage(): void {
+      this.displayImage = !this.displayImage;
+    }
+
+    navigateToFlashcardform() {
+      this._router.navigate(['/flashcardform'])
+    }
+
+    ngOnInit(): void {
+      console.log('FlashcardConponent created');
+      this.getFlashcards();
+    }
   }
 
-  toggleImage(): void {
-    this.displayImage = !this.displayImage;
-  }
-
-  navigateToFlashcardform() {
-    this._router.navigate(['/flashcardform'])
-  }
-
-  ngOnInit(): void {
-    console.log('ItemsConponent created');
-    this.getFlashcards();
-  }
-
-}

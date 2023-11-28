@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.20" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.22" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0" />
@@ -25,6 +26,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\CollectionFlashcard\collectionFlashcardform.component.ts" />
+    <None Remove="ClientApp\src\app\CollectionFlashcard\collectionFlashcards.service.ts" />
+    <None Remove="ClientApp\src\app\Collections\collection.ts" />
+    <None Remove="ClientApp\src\app\CollectionFlashcard\collectionFlashcard.ts" />
+    <None Remove="ClientApp\src\app\Collections\collectionform.component.ts" />
+    <None Remove="ClientApp\src\app\Collections\collections.service.ts" />
+    <None Remove="ClientApp\src\app\Contributers\contributer.ts" />
+    <None Remove="ClientApp\src\app\Contributers\contributers.service.ts" />
     <None Remove="ClientApp\src\app\Flashcards\flashcard.ts" />
     <None Remove="ClientApp\src\app\Flashcards\flashcardform.component.ts" />
     <None Remove="ClientApp\src\app\Flashcards\flashcards.service.ts" />
@@ -36,6 +45,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\CollectionFlashcard\collectionFlashcardform.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Collections\collection.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\CollectionFlashcard\collectionFlashcard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\CollectionFlashcard\collectionFlashcards.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Collections\collections.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Collections\collectionform.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Contributers\contributer.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Contributers\contributers.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Flashcards\flashcards.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Flashcards\flashcard.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Flashcards\flashcardform.component.ts" />

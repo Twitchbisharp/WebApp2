@@ -1,6 +1,6 @@
 export interface IFlashcard {
-  FlashcardId: number;
-  Name: string;
-  Description: string;
-  ImageUrl: string;
+  flashcardId: number;
+  name: string;
+  description: string;
+  imageUrl: string;
 }

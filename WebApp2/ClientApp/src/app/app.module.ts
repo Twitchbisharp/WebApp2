@@ -8,8 +8,13 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { FlashcardsComponent } from './Flashcards/flashcards.component';
+import { CollectionsComponent } from './Collections/collections.component';
+import { CollectionFlashcardComponent } from './CollectionFlashcard/collectionFlashcards.component';
+import { ContributersComponent } from './Contributers/contributers.component';
 import { ConvertToCurrency } from './shared/convert-to-currency.pipe';
 import { FlashcardformComponent } from "./Flashcards/flashcardform.component";
+import { CollectionformComponent } from "./Collections/collectionform.component";
+
 
 
 
@@ -19,8 +24,11 @@ import { FlashcardformComponent } from "./Flashcards/flashcardform.component";
     NavMenuComponent,
     HomeComponent,
     FlashcardsComponent,
-    ConvertToCurrency,
+    CollectionsComponent,
+    ContributersComponent,
     FlashcardformComponent,
+    CollectionformComponent,
+    CollectionFlashcardComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,10 +37,26 @@ import { FlashcardformComponent } from "./Flashcards/flashcardform.component";
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+
+      // Flashcard URLs
       { path: 'flashcards', component: FlashcardsComponent },
       { path: 'flashcardform', component: FlashcardformComponent },
       { path: 'flashcardform/:mode/:id', component: FlashcardformComponent },
-      { path: "**", redirectTo: "", pathMatch: "full"} // This must be the last one in this list
+
+
+      // Collection URLs
+      { path: 'collections', component: CollectionsComponent },
+      { path: 'collectionform', component: CollectionformComponent },
+      { path: 'collectionform/:mode/:id', component: CollectionformComponent },
+
+      // CollectionFlashcard URLs
+      { path: 'collectionFlashcard', component: CollectionFlashcardComponent },
+
+      // Contributer URLs
+      { path: 'contributers', component: ContributersComponent},
+
+      // This must be the last one in this list
+      { path: "**", redirectTo: "", pathMatch: "full"} 
     ])
   ],
   providers: [],
