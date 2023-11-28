@@ -1,12 +1,15 @@
 <h2>Add Flashcard to Collection</h2>
 
-<form [formGroup]="CollectionFlashcardForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="collectionFlashcardForm" (ngSubmit)="onSubmit()">
 
   <div class="form-group">
     <label for="collectionFlashcard">Add flashcards:</label>
     <br />
-    <select multiple formControlName="selectedFlashcardForm" style="width: 300px;">
-      <option *ngFor="let collectionflashcard of collectionFlashcards" [ngValue]="collectionFlashcard">{{collectionflashcard.flashcard.flashcardId}}. Term: {{collectionflashcard.flashcard.name}}, Definition: {{collectionflashcard.flashcard.description}}</option>
+    <select multiple style="width: 500px;">
+      <option *ngFor="let collectionflashcard of collectionFlashcards" [ngValue]="collectionflashcard">
+      {{collectionflashcard.flashcard.flashcardId}}.
+      Term: {{collectionflashcard.flashcard.name}},
+      Description: {{collectionflashcard.flashcard.description}}</option>
     </select>
   </div>
 

@@ -24,6 +24,7 @@ export class CollectionformComponent {
       collectionDate: new Date().getDate().toString() + "." + (new Date().getMonth() + 1).toString() + "." + new Date().getFullYear().toString(),
       collectionName: ['', Validators.required],
       collectionFlashcardId: [1],
+/*      collectionFlashcard: [''],*/
       totalFlashcards: [0],
       contributerId: [0],
     });
@@ -50,7 +51,7 @@ export class CollectionformComponent {
         });
     }
     else {
-      this._collectionService.createCollection(newCollection)
+      this._collectionService.createCollection( newCollection)
         .subscribe(response => {
           if (response.success) {
             console.log(response.message);

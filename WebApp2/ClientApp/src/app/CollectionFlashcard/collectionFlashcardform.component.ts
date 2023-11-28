@@ -9,16 +9,15 @@ import { FlashcardService } from '../Flashcards/flashcards.service';
 import { forkJoin } from 'rxjs';
 
 @Component({
-  selector: "app-collections-collectionform",
+  selector: "app-collectionsFlashcards-collectionflashcardform",
   templateUrl: "./collectionFlashcardform.component.html"
 })
 
-export class CollectionFlashcardForm implements OnInit{
+export class CollectionFlashcardFormComponent implements OnInit{
   collectionFlashcardForm: FormGroup;
+  collectionFlashcards: ICollectionFlashcard[] = [];
   flashcards: IFlashcard[] = [];
   collectionId: number = 0;
-
-  
 
   constructor(
     private _flashcardService: FlashcardService,
@@ -28,7 +27,8 @@ export class CollectionFlashcardForm implements OnInit{
     private _route: ActivatedRoute
   ) {
     this.collectionFlashcardForm = _formbuilder.group({
-      flashcardId: [''],
+      collectionFlashcards: [''],
+      flahscards: [''],
       collectionId: [''],
     })
 
@@ -117,14 +117,16 @@ export class CollectionFlashcardForm implements OnInit{
     }
   }
 
-  backToCollectionsFlashcard() {
-    this._router.navigate(['/collectionsFlashcard']);
+  backToCollections() {
+    this._router.navigate(['/collections']);
   }
 
   ngOnInit(): void {
     this._route.params.subscribe(params => {
-        this.collectionId = +params['id']; // Convert to number
-        this.loadCollectionFlashcardsByCollectionId(this.collectionId);
+      this.collectionId = +params['id']; // Convert to number
+      this._collectionFlashcardService.getCollectionFlashcard().subscribe(cf => {
+        this.collectionFlashcards = cf;
+      })
       })
   }
 
