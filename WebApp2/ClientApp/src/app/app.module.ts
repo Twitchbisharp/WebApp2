@@ -47,7 +47,7 @@ import { PlayComponent } from "./Play/play.component";
 
       // Play URLs
       { path: 'play', component: PlayComponent },
-      { path: 'play/:id', component: PlayComponent }
+      { path: 'play/:id', component: PlayComponent },
 
       // Collection URLs
       { path: 'collections', component: CollectionsComponent },
