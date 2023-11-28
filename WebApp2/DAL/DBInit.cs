@@ -450,8 +450,10 @@ public static class DBInit
         {
             var contributers = new List<Contributer>
             {
-                new Contributer() {Name = "Test Testesen"}, // Bare fjern disse når dummy data legges til
-                new Contributer() {Name = "Test2 Test2sen"},
+                new Contributer() {Name = "Hans Schwanz"}, 
+                new Contributer() {Name = "John Smith"},
+                new Contributer() {Name = "Ola Normann"},
+                new Contributer() {Name = "Sean Pierce"}
             };
             context.AddRange(contributers);
             context.SaveChanges();
@@ -476,9 +478,15 @@ public static class DBInit
                 },
                 new Collection() {
                     CollectionId = 3,
-                    CollectionDate = "16.11.2023",
-                    CollectionName = "somethignelse",
-                    ContributerId = 1,
+                    CollectionDate = "28.11.2023",
+                    CollectionName = "Norway",
+                    ContributerId = 3,
+                },
+                new Collection() {
+                    CollectionId = 4,
+                    CollectionDate = "28.11.2023",
+                    CollectionName = "USA",
+                    ContributerId = 4,
                 },
             };
             context.AddRange(collections);
@@ -490,8 +498,83 @@ public static class DBInit
         {
             var collectionFlashcards = new List<CollectionFlashcard>()
             {
-                new CollectionFlashcard() { CollectionId = 1, FlashcardId = 1},     // Bare fjern denne når dummy data kommer, men behold syntaks
-                new CollectionFlashcard() { CollectionId = 1, FlashcardId = 2 },
+                // English
+                new CollectionFlashcard {FlashcardId = 1, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 2, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 3, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 4, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 5, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 6, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 7, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 8, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 9, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 10, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 11, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 12, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 13, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 14, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 15, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 16, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 17, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 18, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 19, CollectionId = 1 },
+                new CollectionFlashcard {FlashcardId = 20, CollectionId = 1 },
+
+                //German
+                new CollectionFlashcard { FlashcardId = 21, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 22, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 23, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 24, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 25, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 26, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 27, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 28, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 29, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 30, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 31, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 32, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 33, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 34, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 35, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 36, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 37, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 38, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 39, CollectionId = 2 },
+                new CollectionFlashcard { FlashcardId = 40, CollectionId = 2 },
+
+                //Norway
+                new CollectionFlashcard { FlashcardId = 41, CollectionId = 3 },
+                new CollectionFlashcard { FlashcardId = 42, CollectionId = 3 },
+                new CollectionFlashcard { FlashcardId = 43, CollectionId = 3 },
+                new CollectionFlashcard { FlashcardId = 44, CollectionId = 3 },
+                new CollectionFlashcard { FlashcardId = 45, CollectionId = 3 },
+                new CollectionFlashcard { FlashcardId = 46, CollectionId = 3 },
+                new CollectionFlashcard { FlashcardId = 47, CollectionId = 3 },
+                new CollectionFlashcard { FlashcardId = 48, CollectionId = 3 },
+                new CollectionFlashcard { FlashcardId = 49, CollectionId = 3 },
+                new CollectionFlashcard { FlashcardId = 50, CollectionId = 3 },
+                new CollectionFlashcard { FlashcardId = 51, CollectionId = 3 },
+                new CollectionFlashcard { FlashcardId = 52, CollectionId = 3 },
+                new CollectionFlashcard { FlashcardId = 53, CollectionId = 3 },
+                new CollectionFlashcard { FlashcardId = 54, CollectionId = 3 },
+                new CollectionFlashcard { FlashcardId = 55, CollectionId = 3 },
+                
+                //USA
+                new CollectionFlashcard { FlashcardId = 56, CollectionId = 4 },
+                new CollectionFlashcard { FlashcardId = 57, CollectionId = 4 },
+                new CollectionFlashcard { FlashcardId = 58, CollectionId = 4 },
+                new CollectionFlashcard { FlashcardId = 59, CollectionId = 4 },
+                new CollectionFlashcard { FlashcardId = 60, CollectionId = 4 },
+                new CollectionFlashcard { FlashcardId = 61, CollectionId = 4 },
+                new CollectionFlashcard { FlashcardId = 62, CollectionId = 4 },
+                new CollectionFlashcard { FlashcardId = 63, CollectionId = 4 },
+                new CollectionFlashcard { FlashcardId = 64, CollectionId = 4 },
+                new CollectionFlashcard { FlashcardId = 65, CollectionId = 4 },
+                new CollectionFlashcard { FlashcardId = 66, CollectionId = 4 },
+                new CollectionFlashcard { FlashcardId = 67, CollectionId = 4 },
+                new CollectionFlashcard { FlashcardId = 68, CollectionId = 4 },
+                new CollectionFlashcard { FlashcardId = 69, CollectionId = 4 },
+                new CollectionFlashcard { FlashcardId = 70, CollectionId = 4 },
             };
             context.AddRange(collectionFlashcards);
             context.SaveChanges();
