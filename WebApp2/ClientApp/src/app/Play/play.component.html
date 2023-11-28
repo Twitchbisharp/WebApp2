@@ -1,10 +1,11 @@
 <!----------------------------------------------------- play.component.html -->
+
 <h1 id="title">{{ collectionFlashcards[0].collection.collectionName }}</h1>
 
-<div *ngFor="let cf of collectionFlashcards; let i = index" [id]="'collectionFlashcard' + i" class="collectionflashcard" [hidden]="currentIndex !== i">
-  <div>{{ cf.flashcard.name }}</div>
-  <img *ngIf="cf.flashcard.imageUrl" [src]="cf.flashcard.imageUrl" alt="Flashcard Image" class="img-fluid" width="250px">
-  <div>{{ cf.flashcard.description }}</div>
+<div *ngFor="let cf of collectionFlashcards; let i = index" [id]="'collectionFlashcard' + i" class="collectionflashcard" [hidden]="currentIndex !== i" (click)="flipCard()">
+  <div *ngIf="!dynamicProperties[i].showBack">{{ cf.flashcard.name }}</div>
+  <img *ngIf="!dynamicProperties[i].showBack && cf.flashcard.imageUrl" [src]="cf.flashcard.imageUrl" alt="Flashcard Image" class="img-fluid" width="250px">
+  <div *ngIf="dynamicProperties[i].showBack">{{ cf.flashcard.description }}</div>
 </div>
 
 <button (click)="showPreviousFlashcard()" [disabled]="currentIndex === 0">Previous Flashcard</button>
@@ -14,12 +15,16 @@
 
 
 
+<!--<h1 id="title">{{ collectionFlashcards[0].collection.collectionName }}</h1>
 
+<div *ngFor="let cf of collectionFlashcards; let i = index" [id]="'collectionFlashcard' + i" class="collectionflashcard" [hidden]="currentIndex !== i">
+  <div>{{ cf.flashcard.name }}</div>
+  <img *ngIf="cf.flashcard.imageUrl" [src]="cf.flashcard.imageUrl" alt="Flashcard Image" class="img-fluid" width="250px">
+  <div>{{ cf.flashcard.description }}</div>
+</div>
 
-
-
-
-
+<button (click)="showPreviousFlashcard()" [disabled]="currentIndex === 0">Previous Flashcard</button>
+<button (click)="showNextFlashcard()" [disabled]="currentIndex === flashcards.length - 1">Next Flashcard</button>-->
 <!--<div id="carouselExampleControls" class="carousel slide">
   <div class="carousel-inner">
     <div *ngFor="let cf of flashcards; let i = index" [id]="'term' + i" class="carousel-item text-center"
