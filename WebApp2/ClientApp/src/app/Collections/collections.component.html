@@ -37,6 +37,7 @@
       <td>{{ collection.contributerId}}</td>
       <td>{{ collection.contributers.name}}</td>
       <td>
+        <button class="btn btn-primary" [routerLink]="['/play']">Play</button>
         <button class="btn btn-primary" [routerLink]="['/collectionform', 'edit', collection.collectionId]">Update</button>
         <button class="delete-link btn btn-danger" (click)="deleteCollection(collection)" style="cursor: pointer;"> Delete </button>
       </td>
