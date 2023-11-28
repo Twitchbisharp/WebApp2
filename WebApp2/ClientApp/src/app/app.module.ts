@@ -60,6 +60,7 @@ import { CollectionFlashcardForm } from "./CollectionFlashcard/collectionFlashca
       { path: 'collectionFlashcard', component: CollectionFlashcardComponent },
       { path: 'collectionFlashcard/:id', component: CollectionFlashcardComponent },
       { path: 'collectionFlashcardform', component: CollectionformComponent },
+      { path: 'collectionFlashcardform/:mode/:id', component: CollectionformComponent },
 
       // Contributer URLs
       { path: 'contributers', component: ContributersComponent},

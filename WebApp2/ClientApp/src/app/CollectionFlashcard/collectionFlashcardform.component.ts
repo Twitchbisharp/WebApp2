@@ -10,7 +10,7 @@ import { forkJoin } from 'rxjs';
 
 @Component({
   selector: "app-collections-collectionform",
-  templateUrl: "./collectionFlashcardForm.component.html"
+  templateUrl: "./collectionFlashcardform.component.html"
 })
 
 export class CollectionFlashcardForm implements OnInit{
@@ -33,21 +33,21 @@ export class CollectionFlashcardForm implements OnInit{
     })
 
 
-    // Automatic data insertion
-    forkJoin([
-      this._flashcardService.getFlashcards(),
-    ]).subscribe(
-      ([flashcards]) => {
-        this.flashcards = flashcards;
-        console.log("Retrieved flashcards: ", flashcards)
-        this.collectionFlashcardForm.patchValue({
-          flashcards: [],
-        });
-      },
-      (error) => {
-        console.error('Error fetching data:', error);
-      }
-    );
+  //  // Automatic data insertion
+  //  forkJoin([
+  //    this._flashcardService.getFlashcards(),
+  //  ]).subscribe(
+  //    ([flashcards]) => {
+  //      this.flashcards = flashcards;
+  //      console.log("Retrieved flashcards: ", flashcards)
+  //      this.collectionFlashcardForm.patchValue({
+  //        flashcards: [],
+  //      });
+  //    },
+  //    (error) => {
+  //      console.error('Error fetching data:', error);
+  //    }
+  //  );
   }
 
   onSubmit() {
