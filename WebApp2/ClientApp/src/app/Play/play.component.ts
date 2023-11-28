@@ -2,9 +2,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute } from "@angular/router";
 import { RouterModule } from '@angular/router';
 import { FlashcardService } from '../Flashcards/flashcards.service';
-import { CollectionFlashcardService } from "../CollectionFlashcard/collectionFlashcards.service"
+import { CollectionFlashcardService } from "../CollectionFlashcard/collectionFlashcards.service";
+import { ICollectionFlashcard } from "../CollectionFlashcard/collectionFlashcard";
 
 
 @Component({
@@ -14,8 +16,10 @@ import { CollectionFlashcardService } from "../CollectionFlashcard/collectionFla
 export class PlayComponent implements OnInit {
   @Input() flashcards: any[] = [];
   currentIndex: number = 0;
+  collectionId: number = 0;
+  collectionFlashcards: ICollectionFlashcard[] = [];
 
-  constructor(private flashcardService: FlashcardService, private _collectionFlashcardService: CollectionFlashcardService) { }
+  constructor(private flashcardService: FlashcardService, private _collectionFlashcardService: CollectionFlashcardService, private _route: ActivatedRoute) { }
 
   ngOnInit(): void
   {
@@ -24,15 +28,18 @@ export class PlayComponent implements OnInit {
   }
 
   loadFlashcards(): void {
-    this._collectionFlashcardService.getCollectionFlashcard().subscribe(
-      (collectionFlashcards) => {
+    this._route.params.subscribe(params => {
+      this.collectionId = params['id']
+      this._collectionFlashcardService.getCollectionFlashcard().subscribe(collectionFlashcards => {
+        console.log("", collectionFlashcards[0].collectionId)
+        for (let cf of collectionFlashcards) {
+          if (cf.collectionId == this.collectionId) {
+            this.collectionFlashcards.push(cf);
+          }
+        }
+      });
+    });
 
-        /*this.flashcards = flashcards;*/
-      },
-      (error) => {
-        console.error("Error fetching flashcards", error);
-      }
-    );
   }
 
   showPreviousFlashcard(): void {
@@ -42,7 +49,7 @@ export class PlayComponent implements OnInit {
   }
 
   showNextFlashcard(): void {
-    if (this.currentIndex < this.flashcards.length - 1) {
+    if (this.currentIndex < this.collectionFlashcards.length - 1) {
       this.currentIndex++;
     }
   }
