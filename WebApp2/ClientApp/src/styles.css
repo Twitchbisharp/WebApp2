@@ -3,7 +3,7 @@
 /* Provide sufficient contrast against white background */
 
 a {
-  color: #0366d6;
+  color: #000000;
 }
 
 code {
@@ -11,18 +11,18 @@ code {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+  color: #000000;
+  background-color: #D3CCC3;
+  border-color: #000000;
 }
     
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;800&family=VT323&display=swap');
 
 body {
-  margin: 1px;
+  margin: 30px;
   font-family: "Poppins";
-  background: #808080;
+  background: #D3CCC3;
 }
 
 ul, li {
@@ -31,23 +31,23 @@ ul, li {
 }
 
 h1, h2, h3 {
-  color: #000000;
+  color: #6C6C64;
 }
 
 p {
-  color: #000000;
+  color: #6C6C64;
 }
 
 header {
   max-width: 1200px;
   margin: 40px auto;
-  border-bottom: 1px solid #bbc7c7;
+  border-bottom: 1px solid #85807C;
 }
 
-.grid-container {
+.grid-contents {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 60px;
+  gap: 0px;
   max-width: 1200px;
   margin: 20px auto;
 }
@@ -55,16 +55,16 @@ header {
 article.featured {
   grid-column: span 3;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr ;
   gap: 60px;
   align-items: center;
-  border-bottom: 1px solid #bbc7c7;
+  border-bottom: 1px solid #85807C;
   padding-bottom: 40px;
 }
 
   article img, article.featured img {
     width: 100%;
-    border: 4px solid #fff;
+    border: 4px solid #85807C;
     border-radius: 8px;
   }
 
