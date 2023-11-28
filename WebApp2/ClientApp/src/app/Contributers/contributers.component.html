@@ -25,7 +25,13 @@
     <tr *ngFor='let contributer of filteredContributers'>
       <td>{{ contributer.contributerId }}</td>
       <td>{{ contributer.name }}</td>
-      <td *ngIf='contributer.collections != null'>{{ contributer.collections.collectionName}}</td><!--May need to be a for-loop-->
+      <td *ngIf="collections && collections.length > 0">
+          <span *ngFor="let collection of collections">
+            <span *ngIf="collection.contributerId === contributer.contributerId">
+              {{ collection.collectionName }}
+            </span>
+          </span>
+      </td>
     </tr>
   </tbody>
 </table>

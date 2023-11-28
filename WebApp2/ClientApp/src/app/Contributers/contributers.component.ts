@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { IContributer } from './contributer';
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { ContributerService } from "./contributers.service"; 
+import { ContributerService } from "./contributers.service";
+import { CollectionService } from "../Collections/collections.service";
+import { ICollection } from '../Collections/collection';
 
 @Component({
   selector: 'app-contributers-component',
@@ -13,8 +15,10 @@ import { ContributerService } from "./contributers.service";
     viewTitle: string = 'Table'
     displayImage: boolean = true;
     contributers: IContributer[] = [];
+    collections: ICollection[] = [];
 
-  constructor(private _contributerService: ContributerService, private _http: HttpClient, private _router: Router) { }
+
+  constructor(private _contributerService: ContributerService, private _collectionService: CollectionService, private _http: HttpClient, private _router: Router) { }
 
     private _listFilter: string = '';
     get listFilter(): string {
@@ -32,8 +36,16 @@ import { ContributerService } from "./contributers.service";
       console.log()
       this.contributers = data;
       this.filteredContributers = this.contributers;
-      })
-    }
+    })
+  }
+
+  getCollections(): void {
+    this._collectionService.getCollections().subscribe(data => {
+      console.log('All COLLECTIONS', JSON.stringify(data));
+      console.log()
+      this.collections = data;
+    })
+  }
 
     deleteContributer(contributer: IContributer): void {
       const confirmDelete = confirm(`Are you sure you want to delete "${contributer.name}"?`);
@@ -74,6 +86,7 @@ import { ContributerService } from "./contributers.service";
   ngOnInit(): void {
     console.log('ContributerConponent created');
     this.getContributers();
+    this.getCollections();
   }
 
 }
