@@ -4,11 +4,25 @@
   <div class="form-group">
     <label for="name">Name:</label>
     <input type="text" id="name" formControlName="name" class="form-control" />
+    <div *ngIf="flashcardForm.get('name')?.hasError('required') && flashcardForm.get('name')?.touched" class=" danger">
+      A valid name is required in order to create a flashcard
+    </div>
+    <div *ngIf="flashcardForm.get('name')?.hasError('required') && flashcardForm.get('name')?.touched" class=" danger">
+      The name must be letters between 1 and 20 characters
+    </div>
+
   </div>
   <div class="form-group">
     <label for="description">Description:</label>
     <textarea id="description" formControlName="description" class="form-control"></textarea>
   </div>
+  <div *ngIf="flashcardForm.get('name')?.hasError('required') && flashcardForm.get('name')?.touched" class=" danger">
+    A valid description is required in order to create a flashcard
+  </div>
+  <div *ngIf="flashcardForm.get('description')?.hasError('maxLength') " class=" danger">
+    The description can not exceed 120 characters
+  </div>
+
   <div class="form-group">
     <label for="ImageUrl">Image URL:</label>
     <input type="text" id="imageUrl" formControlName="imageUrl" class="form-control" />

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApp2.Models;
 using WebApp2.DAL;
+using System.Security.Cryptography.X509Certificates;
+
 
 namespace WebApp2.Controllers;
 
@@ -18,31 +20,33 @@ public class FlashcardController : Controller
         _logger = logger;
 
     }
+
+
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var items = await _flashcardRepository.GetAll();
-        if (items == null)
+        var flashcards = await _flashcardRepository.GetAll();
+        if (flashcards == null)
         {
-            _logger.LogError("[ItemController] Item list not found while executing _itemRepository.GetAll()");
-            return NotFound("Item list not found");
+            _logger.LogError("[FlashcardController] Flashcard list not found while executing _flashcardRepository.GetAll()");
+            return NotFound("Flashcard list not found");
         }
-        return Ok(items);
+        return Ok(flashcards);
     }
 
     [HttpPost("create")]
-    public async Task<IActionResult> Create([FromBody] Flashcard newItem)
+    public async Task<IActionResult> Create([FromBody] Flashcard newFlashcard)
     {
-        if (newItem == null)
+        if (newFlashcard == null)
         {
             return BadRequest("Invalid item data.");
         }
         //newItem.ItemId = GetNextItemId();
-        bool returnOk = await _flashcardRepository.Create(newItem);
+        bool returnOk = await _flashcardRepository.Create(newFlashcard);
 
         if (returnOk)
         {
-            var response = new { success = true, message = "Item " + newItem.Name + " created successfully" };
+            var response = new { success = true, message = "Item " + newFlashcard.Name + " created successfully" };
             return Ok(response);
         }
         else

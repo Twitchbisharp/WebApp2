@@ -3,19 +3,36 @@ import { IFlashcard } from './flashcard';
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { FlashcardService } from "./flashcards.service";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-flashcards-component',
   templateUrl: './flashcards.component.html',
   styles: ['thead {color: blue;}']
 })
-  export class FlashcardsComponent {
-    viewTitle: string = 'Table'
-    displayImage: boolean = true;
-    // listFilter: string = '';
-    flashcards: IFlashcard[] = [];
+export class FlashcardsComponent {
+  viewTitle: string = 'Table'
+  displayImage: boolean = true;
+  flashcards: IFlashcard[] = [];
+  flashcardForm: FormGroup; 
 
-  constructor(private _flashcardService: FlashcardService, private _http: HttpClient, private _router: Router) { }
+  constructor(private _flashcardService: FlashcardService, private _http: HttpClient, private _router: Router, private fb: FormBuilder) {
+    this.flashcardForm = this.fb.group({
+      name: ["", [
+        Validators.required,
+        Validators.pattern(/^[0-9a-zA-ZæøåÆØÅ. -]{2,15}$/)
+      ]],
+      description: ["", [
+        Validators.required,
+        Validators.maxLength(120),
+        Validators.pattern(/^[0-9a-zA-ZæøåÆØÅ. -]{2,15}$/)
+      ]],
+      deckId: null
+    });
+    this.flashcardForm.get('name')?.setErrors({ 'incorrect': true, 'message': "The name must be letters between 1 and 20 characters" })
+    this.flashcardForm.get('description')?.setErrors({ 'incorrect': true, 'message': "The description must be letters between 1 and 20 characters" })
+  
+  }
 
     private _listFilter: string = '';
     get listFilter(): string {
