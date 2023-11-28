@@ -50,7 +50,7 @@ export class CollectionformComponent {
         });
     }
     else {
-      this._collectionService.createCollection( newCollection)
+      this._collectionService.createCollection(newCollection)
         .subscribe(response => {
           if (response.success) {
             console.log(response.message);

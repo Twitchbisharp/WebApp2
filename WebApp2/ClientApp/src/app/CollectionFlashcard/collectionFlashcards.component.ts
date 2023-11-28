@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ICollectionFlashcard } from './collectionFlashcard';
 import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { CollectionFlashcardService } from "./collectionFlashcards.service";
 
 @Component({
@@ -13,8 +13,9 @@ import { CollectionFlashcardService } from "./collectionFlashcards.service";
     viewTitle: string = 'Table'
     displayImage: boolean = true;
     collectionFlashcards: ICollectionFlashcard[] = [];
+    collectionId: number = -1;
 
-  constructor(private _collectionFlashcardService: CollectionFlashcardService, private _http: HttpClient, private _router: Router) { }
+  constructor(private _collectionFlashcardService: CollectionFlashcardService, private _http: HttpClient, private _router: Router, private _route: ActivatedRoute) { }
 
     private _listFilter: string = '';
     get listFilter(): string {
@@ -32,6 +33,7 @@ import { CollectionFlashcardService } from "./collectionFlashcards.service";
       console.log(data)
       this.collectionFlashcards = data;
       this.filteredCollectionFlashcards = this.collectionFlashcards;
+
       })
     }
 
@@ -72,8 +74,23 @@ import { CollectionFlashcardService } from "./collectionFlashcards.service";
   }
 
   ngOnInit(): void {
-    console.log('CollectionConponent created');
-    this.getCollections();
+    
+    this.loadFlashcards()
+    console.log('Collectionflascards loaded: ', this.collectionFlashcards);
   }
-
+  loadFlashcards(): void {
+    this._route.params.subscribe(params => {
+      this.collectionId = params['id']
+      this._collectionFlashcardService.getCollectionFlashcard().subscribe(collectionFlashcards => {
+        console.log("", collectionFlashcards[0].collectionId)
+        for (let cf of collectionFlashcards) {
+          if (cf.collectionId == this.collectionId) {
+            this.collectionFlashcards.push(cf);
+          }
+        }
+        this.filteredCollectionFlashcards = this.collectionFlashcards;
+        
+      });
+    });
+  }
 }

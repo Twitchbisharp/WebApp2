@@ -47,6 +47,7 @@ import { PlayComponent } from "./Play/play.component";
 
       // Play URLs
       { path: 'play', component: PlayComponent },
+      { path: 'play/:id', component: PlayComponent }
 
       // Collection URLs
       { path: 'collections', component: CollectionsComponent },
@@ -55,6 +56,7 @@ import { PlayComponent } from "./Play/play.component";
 
       // CollectionFlashcard URLs
       { path: 'collectionFlashcard', component: CollectionFlashcardComponent },
+      { path: 'collectionFlashcard/:id', component: CollectionFlashcardComponent },
 
       // Contributer URLs
       { path: 'contributers', component: ContributersComponent},

@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FlashcardService } from '../Flashcards/flashcards.service';
+import { CollectionFlashcardService } from "../CollectionFlashcard/collectionFlashcards.service"
 
 
 @Component({
@@ -14,7 +15,7 @@ export class PlayComponent implements OnInit {
   @Input() flashcards: any[] = [];
   currentIndex: number = 0;
 
-  constructor(private flashcardService: FlashcardService) { }
+  constructor(private flashcardService: FlashcardService, private _collectionFlashcardService: CollectionFlashcardService) { }
 
   ngOnInit(): void
   {
@@ -23,10 +24,10 @@ export class PlayComponent implements OnInit {
   }
 
   loadFlashcards(): void {
-    this.flashcardService.getFlashcards().subscribe(
-      (flashcards) => {
+    this._collectionFlashcardService.getCollectionFlashcard().subscribe(
+      (collectionFlashcards) => {
+
         this.flashcards = flashcards;
-        console.log("Flashcards here - this is 'loadFlashcards()'", this.flashcards);
       },
       (error) => {
         console.error("Error fetching flashcards", error);

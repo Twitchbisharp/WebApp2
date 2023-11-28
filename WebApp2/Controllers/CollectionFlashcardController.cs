@@ -56,7 +56,7 @@ public class CollectionFlashcardController : Controller
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetCollectionFlashcardbyId(int id)
+    public async Task<IActionResult> GetCollectionFlashcardByCollectionId(int id)
     {
         var collectionFlashcard = await _collectionFlashcardRepository.GetCollectionFlashcardById(id);
         if (collectionFlashcard == null)
