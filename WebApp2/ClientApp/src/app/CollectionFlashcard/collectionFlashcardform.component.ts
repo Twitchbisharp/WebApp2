@@ -10,10 +10,10 @@ import { forkJoin } from 'rxjs';
 
 @Component({
   selector: "app-collections-collectionform",
-  templateUrl: "./collectionform.component.html"
+  templateUrl: "./collectionFlashcardForm.component.html"
 })
 
-export class CollectionformComponent implements OnInit{
+export class CollectionFlashcardForm implements OnInit{
   collectionFlashcardForm: FormGroup;
   flashcards: IFlashcard[] = [];
   collectionId: number = 0;

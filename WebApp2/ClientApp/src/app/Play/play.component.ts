@@ -27,7 +27,7 @@ export class PlayComponent implements OnInit {
     this._collectionFlashcardService.getCollectionFlashcard().subscribe(
       (collectionFlashcards) => {
 
-        this.flashcards = flashcards;
+        /*this.flashcards = flashcards;*/
       },
       (error) => {
         console.error("Error fetching flashcards", error);

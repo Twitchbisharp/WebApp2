@@ -15,6 +15,7 @@ import { ConvertToCurrency } from './shared/convert-to-currency.pipe';
 import { FlashcardformComponent } from "./Flashcards/flashcardform.component";
 import { CollectionformComponent } from "./Collections/collectionform.component";
 import { PlayComponent } from "./Play/play.component";
+import { CollectionFlashcardForm } from "./CollectionFlashcard/collectionFlashcardform.component";
 
 
 
@@ -31,6 +32,7 @@ import { PlayComponent } from "./Play/play.component";
     CollectionformComponent,
     CollectionFlashcardComponent,
     PlayComponent,
+    CollectionFlashcardForm,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -47,7 +49,7 @@ import { PlayComponent } from "./Play/play.component";
 
       // Play URLs
       { path: 'play', component: PlayComponent },
-      { path: 'play/:id', component: PlayComponent }
+      { path: 'play/:id', component: PlayComponent },
 
       // Collection URLs
       { path: 'collections', component: CollectionsComponent },
@@ -57,6 +59,7 @@ import { PlayComponent } from "./Play/play.component";
       // CollectionFlashcard URLs
       { path: 'collectionFlashcard', component: CollectionFlashcardComponent },
       { path: 'collectionFlashcard/:id', component: CollectionFlashcardComponent },
+      { path: 'collectionFlashcardform', component: CollectionformComponent },
 
       // Contributer URLs
       { path: 'contributers', component: ContributersComponent},
