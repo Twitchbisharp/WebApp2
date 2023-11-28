@@ -15,11 +15,13 @@ export class CollectionService {
   getCollections(): Observable<ICollection[]> {
     return this._http.get<ICollection[]>(this.baseUrl);
   }
-
+  
   createCollection(newCollection: ICollection): Observable<any> {
-    const createUrl = "api/collection/create";
-    return this._http.post<any>(createUrl, newCollection);
-  }
+    console.log("Inside Createcollection with object: ", newCollection)
+    const createUrl = "api/Collection/create"
+    return this._http.put<any>(createUrl, newCollection);
+  }  
+ 
 
   getCollectionById(collectionId: number): Observable<any> {
     const url = `${this.baseUrl}/${collectionId}`;
@@ -28,6 +30,7 @@ export class CollectionService {
  
   updateCollection(collectionId: number, newCollection: any): Observable<any> {
     const url = `${this.baseUrl}update/${collectionId}`;
+
     console.log("url: ", url) // is this initialized? no
     console.log("new collection: ", newCollection)
     newCollection.collectionId = collectionId;

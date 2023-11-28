@@ -1,0 +1,19 @@
+<h2>{{isEditMode ? 'Update' : 'Create'}} Collection</h2>
+
+<form [formGroup]="collectionForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="collectionName">Name:</label>
+    <input type="text" id="collectionName" formControlName="collectionName" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label for="collectionFlashcard">Add flashcards:</label>
+    <br />
+    <select multiple formControlName="selectedFlashcards" style="width: 300px;">
+      <option *ngFor="let flashcard of flashcards" [ngValue]="flashcard">{{flashcard.flashcardId}}. Term: {{flashcard.name}}, Definition: {{flashcard.description}}</option>
+    </select>
+  </div>
+
+  <button class="btn-primary btn" type="submit" [disabled]="collectionForm.invalid">{{isEditMode ? 'Update' : 'Create'}} Collection</button>
+  <button class="btn btn-secondary" (click)="backToCollections()">Cancel</button>
+
+</form>

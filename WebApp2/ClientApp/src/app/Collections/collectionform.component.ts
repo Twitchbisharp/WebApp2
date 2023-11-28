@@ -1,13 +1,10 @@
-import { Component, ViewChild, ElementRef } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Component } from "@angular/core";
+import { FormGroup, FormControl, Validators, FormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CollectionService } from './collections.service';
-import { IFlashcard } from '../Flashcards/flashcard';;
-import { ICollection } from './collection';
-import { ICollectionFlashcard } from '../CollectionFlashcard/collectionFlashcard';
-import { CollectionFlashcardService } from '../CollectionFlashcard/collectionFlashcards.service';
-import { FlashcardService } from '../Flashcards/flashcards.service';
-import { forkJoin } from 'rxjs';
+import { ICollectionFlashcard } from "../CollectionFlashcard/collectionFlashcard";
+import { ICollection } from "./collection";
+import { IContributer } from "../Contributers/contributer";
 
 @Component({
   selector: "app-collections-collectionform",
@@ -18,82 +15,52 @@ export class CollectionformComponent {
   collectionForm: FormGroup;
   isEditMode: boolean = false;
   collectionId: number = -1;
-  flashcards: IFlashcard[] = [];
-  originalCollection: ICollection[] = [];
+  newCollection: ICollection[] = [];
   collectionFlashcard: ICollectionFlashcard[] = [];
+  contributers: IContributer[] = [];
 
-  dropdownOptions: IFlashcard[] = this.flashcards;
-  selectedFlashcards: IFlashcard[] = [];
-
-  
-
-  constructor(
-    private _collectionService: CollectionService,
-    private _flashcardService: FlashcardService,
-    private _collectionFlashcardService: CollectionFlashcardService,
-    private _formbuilder: FormBuilder,
-    private _router: Router,
-    private _route: ActivatedRoute
-  ) {
+  constructor(private _collectionService: CollectionService, private _formbuilder: FormBuilder, private _router: Router, private _route: ActivatedRoute) {
     this.collectionForm = _formbuilder.group({
+      collectionDate: [''],
       collectionId: [''],
-      collectionDate: new Date().getDate() + "." + (new Date().getMonth() + 1) + "." + new Date().getFullYear(),
-      collectionName: [''],
-      collectionFlashcard: [''],
-      totalFlashcards: [''],
-      contributerId: [''],  
-      contributers: [''],
-      flashcards: [[]],
-      selectedFlashcards: [''],
+      collectionName: ['', Validators.required],
+/*      collectionFlashcard: [''],*/
+      totalFlashcards: [0],
+      contributerId: [''],
+/*      contributers: [''],*/
     });
-
-
-
-    // Automatic data insertion
-    forkJoin([
-      this._flashcardService.getFlashcards(),
-    ]).subscribe(
-      ([flashcards]) => {
-        this.flashcards = flashcards;
-        console.log("Retrieved flashcards: ", flashcards)
-        this.collectionForm.patchValue({
-          /*collectionDate: new Date().getDate() + "." + (new Date().getMonth() + 1) + "." + new Date().getFullYear(),*/
-          flashcards: [],
-        });
-      },
-      (error) => {
-        console.error('Error fetching data:', error);
-      }
-    );
   }
 
   onSubmit() {
-    console.log("Selected Flashcard: ", this.collectionForm.value.selectedFlashcards, this.flashcards, this.collectionFlashcard, this.collectionForm.value.flashcards)
-    for (let i of this.collectionFlashcard) {
-      this._collectionFlashcardService.addCollectionFlashcard(i)
-      console.log("Created collectionflashcard", i)
-    }
-
-
+    console.log("CollectionCreate form submitted:");
+    console.log(this.collectionForm);
+    console.log("The collection " + this.collectionForm.value.collectionName + " is created.");
+    console.log(this.collectionForm.touched);
     const newCollection = this.collectionForm.value;
-    console.log("newCollection: ", newCollection)
 
     if (this.isEditMode) {
-      console.log("sending collection: ", newCollection)
       this._collectionService.updateCollection(this.collectionId, newCollection)
-        .subscribe(response => this.handleResponse(response));
-    } else {
-      this._collectionService.createCollection(newCollection)
-        .subscribe(response => this.handleResponse(response));
+        .subscribe(response => {
+          if (response.success) {
+            console.log(response.message);
+            this._router.navigate(['/collections']);
+          }
+          else {
+            console.log('Collection update failed');
+          }
+        });
     }
-  }
-
-  private handleResponse(response: any) {
-    if (response.success) {
-      console.log(response.message);
-      this._router.navigate(['/collections']);
-    } else {
-      console.log('Collection operation failed');
+    else {
+      this._collectionService.createCollection(newCollection)
+        .subscribe(response => {
+          if (response.success) {
+            console.log(response.message);
+            this._router.navigate(['/collections']);
+          }
+          else {
+            console.log('Collections creation failed');
+          }
+        });
     }
   }
 
@@ -117,15 +84,14 @@ export class CollectionformComponent {
     this._collectionService.getCollectionById(collectionId)
       .subscribe(
         (collection: any) => {
-          this.originalCollection = collection;
-          console.log('retrieved collection: ', collection)
+          console.log('retrived collection: ', collection);
           this.collectionForm.patchValue({
             collectionName: collection.collectionName,
-            collectionFlashcard: collection.collectionFlashcard, 
-            collectionDate: collection.collectionDate,
-            totalFlashcards: collection.totalFlashcards,
+            collectionDate: new Date().getDate().toString() + "." + (new Date().getMonth() + 1).toString() + "." + new Date().getFullYear(), 
+/*            collectionFlashcard: collection.collectionFlashcard,*/
+            totalFlashcards: collection.totalFlashcard,
             contributerId: collection.contributerId,
-            contributers: collection.contributers,
+/*            contributers: collection.contributers,*/
           });
         },
         (error: any) => {

@@ -33,6 +33,7 @@ public class CollectionController : Controller
     [HttpPost("create")]
     public async Task<IActionResult> Create([FromBody] Collection newCollection)
     {
+        _logger.LogError("api controller", newCollection);
         if (newCollection == null)
         {
             return BadRequest("Invalid collection data.");
@@ -54,7 +55,7 @@ public class CollectionController : Controller
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetCollectionbyId(int id)
+    public async Task<IActionResult> GetCollectionById(int id)
     {
         var collection = await _collectionRepository.GetCollectionById(id);
         if (collection == null)

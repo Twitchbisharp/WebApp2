@@ -52,7 +52,7 @@ import { CollectionService } from "./collections.service";
               console.error('Error deleting collection', error);
             });
 
-      }
+     }  
   }
   filteredCollections: ICollection[] = this.collections;
 

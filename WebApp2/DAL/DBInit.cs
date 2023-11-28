@@ -462,14 +462,14 @@ public static class DBInit
         {
             var collections = new List<Collection>()
             {
-                new Collection() {              
-                    //CollectionId = 1, 
+                new Collection() {
+                    CollectionId = 1,
                     CollectionDate = "17.11.2023",
                     CollectionName = "English",
                     ContributerId = 2
                 },
-                new Collection() { 
-                    //CollectionId = 2, 
+                new Collection() {
+                    CollectionId = 2,
                     CollectionDate = "17.11.2023",
                     CollectionName = "German",
                     ContributerId = 1,
@@ -492,11 +492,11 @@ public static class DBInit
         }
 
         // Updating Collection.TotalFlashcards to represent the number of collectionFlashcard attached
-        var collectionsToUpdate = context.Collections.Include(o => o.CollectionFlashcard);
-        foreach (var collection in collectionsToUpdate)
-        {
-            collection.TotalFlashcards += collection.CollectionFlashcard.Count;
-        }
-        context.SaveChanges();
+        //var collectionsToUpdate = context.Collections.Include(o => o.CollectionFlashcard);
+        //foreach (var collection in collectionsToUpdate)
+        //{
+        //    collection.TotalFlashcards += collection.CollectionFlashcard.Count;
+        //}
+        //context.SaveChanges();
     }
 }

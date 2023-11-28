@@ -24,7 +24,7 @@ export class FlashcardformComponent {
   onSubmit() {
     console.log("FlashcardCreate form submitted:");
     console.log(this.flashcardForm);
-    console.log("The flaschard " + this.flashcardForm.value.name + " is created.");
+    console.log("The flaschard " + this.flashcardForm.value + " is created.");
     console.log(this.flashcardForm.touched);
     const newFlashcard = this.flashcardForm.value;
 

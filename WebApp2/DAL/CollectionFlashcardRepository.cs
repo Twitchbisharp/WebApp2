@@ -22,6 +22,7 @@ public class CollectionFlashcardRepository : ICollectionFlashcardRepository
     //Gets every collection
     public async Task<IEnumerable<CollectionFlashcard>?> GetAll()
     {
+        _logger.LogError("inside getAll in CollectionFlashcardRepository");
         try 
         {
             return await _db.CollectionFlashcards.ToListAsync();
@@ -36,6 +37,7 @@ public class CollectionFlashcardRepository : ICollectionFlashcardRepository
     // Gets a single collection by id
     public async Task<CollectionFlashcard?> GetCollectionFlashcardById(int id)
     {
+        
         try
         {
             return await _db.CollectionFlashcards.FindAsync(id);
@@ -51,6 +53,7 @@ public class CollectionFlashcardRepository : ICollectionFlashcardRepository
     // Creates a new collection
     public async Task<bool> Create(CollectionFlashcard collection)
     {
+        _logger.LogError("Creating collectionflashcard in CollectinoFlashcardRepository");
         try
         {
             _db.CollectionFlashcards.Add(collection);

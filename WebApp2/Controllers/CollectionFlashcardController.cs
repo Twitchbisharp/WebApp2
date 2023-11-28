@@ -5,7 +5,7 @@ using WebApp2.DAL;
 namespace WebApp2.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/collectionFlashcard")]
 public class CollectionFlashcardController : Controller
 {
     
@@ -21,6 +21,7 @@ public class CollectionFlashcardController : Controller
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
+        _logger.LogError("Inside GetAll in CollectionFlashcardController, url: api/collectionFlashcard" );
         var collectionFlashcards = await _collectionFlashcardRepository.GetAll();
         if (collectionFlashcards == null)
         {
@@ -30,16 +31,17 @@ public class CollectionFlashcardController : Controller
         return Ok(collectionFlashcards);
     }
 
-    [HttpPost("add")]
+    [HttpPost("create")]
     public async Task<IActionResult> Create([FromBody] CollectionFlashcard newCollectionFlashcard)
     {
+        _logger.LogError("Inside Create collectionFlashcardController");
         if (newCollectionFlashcard == null)
         {
             return BadRequest("Invalid collectionFlashcard data.");
         }
         //newCollectionFlashcard.CollectionFlashcardId = GetNextCollectionFlashcardId();
         bool returnOk = await _collectionFlashcardRepository.Create(newCollectionFlashcard);
-
+        _logger.LogError("Inside Create in collectionflashcardController with returnOK being: ", returnOk);
         if (returnOk)
         {
             var response = new { success = true, message = "CollectionFlashcard " + newCollectionFlashcard.CollectionFlashcardId + " created successfully" };
