@@ -40,6 +40,7 @@
       <td *ngIf='collection.collectionFlashcard.length > 0; else elseBlock'><span *ngFor='let flashcard of collection.collectionFlashcard'>{{flashcard.name}}</span></td><!--Syntax for referencing attributes withing foreign key tables-->
       <ng-template #elseBlock><td></td></ng-template> <!--https://angular.io/api/common/NgIf-->
       <td>
+        <button class="btn btn-primary" [routerLink]="['/play']">Play</button>
         <button class="btn btn-primary" [routerLink]="['/collectionform', 'edit', collection.collectionId]">Update</button>
         <button class="delete-link btn btn-danger" (click)="deleteCollection(collection)" style="cursor: pointer;"> Delete </button>
       </td>
