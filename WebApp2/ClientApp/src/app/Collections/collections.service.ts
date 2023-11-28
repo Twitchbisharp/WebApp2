@@ -18,8 +18,8 @@ export class CollectionService {
   
   createCollection(newCollection: ICollection): Observable<any> {
     console.log("Inside Createcollection with object: ", newCollection)
-    const createUrl = "api/Collection/create"
-    return this._http.put<any>(createUrl, newCollection);
+    const createUrl = "api/collection/create";
+    return this._http.post<any>(createUrl, newCollection);
   }  
  
 
@@ -35,6 +35,11 @@ export class CollectionService {
     console.log("new collection: ", newCollection)
     newCollection.collectionId = collectionId;
     return this._http.put<any>(url, newCollection);
+  }
+
+  toCollectionFlashcardId(collectionId: number) {
+    const url = `api/collectionFlashcard/${collectionId}`
+    return this._http.get(url);
   }
 
   deleteCollection(collectionId: number): Observable<any> {

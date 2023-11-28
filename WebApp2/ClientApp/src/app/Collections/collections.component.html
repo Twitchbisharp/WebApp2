@@ -35,7 +35,13 @@
       <td>{{ collection.collectionDate}}</td>
       <td>{{ collection.totalFlashcards}}</td>
       <td>{{ collection.contributerId}}</td>
-      <td>{{ collection.contributers.name}}</td>
+      <td>
+        <span *ngFor="let contributer of contributers">
+          <span *ngIf="contributer.contributerId == collection.contributerId">
+            {{contributer.name}}
+          </span>
+        </span>
+      </td>
       <td>
         <button class="btn btn-primary" [routerLink]="['/play']">Play</button>
         <button class="btn btn-primary" [routerLink]="['/collectionform', 'edit', collection.collectionId]">Update</button>

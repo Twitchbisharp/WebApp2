@@ -20,14 +20,14 @@ namespace WebApp2.Models
 
         //Navigation property
         [JsonPropertyName("Contributers")]
-        public virtual Contributer? Contributers { get; set; } = default!;
+        public virtual List<Contributer>? Contributers { get; set; } = default!;
 
         //[JsonPropertyName("CollectionFlashcardId")]
-        //public int CollectionFlashcardId { get; set; }
+        //public int CollectionFlashcardId { get; set; } = 0;
 
         //Navigation property 
         [JsonPropertyName("CollectionFlashcard")]
-        public virtual List<CollectionFlashcard>? CollectionFlashcard { get; set; }
+        public virtual List<CollectionFlashcard>? CollectionFlashcard { get; set; } = default!;
 
         [JsonPropertyName("TotalFlashcards")]
         public int TotalFlashcards { get; set; } = 0;

@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ICollection } from './collection';
+import { IContributer } from "../Contributers/contributer";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { CollectionService } from "./collections.service";
+import { ContributerService } from "../Contributers/contributers.service";
+import { CollectionFlashcardService } from "../CollectionFlashcard/collectionFlashcards.service";
+
 
 @Component({
   selector: 'app-collections-component',
@@ -10,11 +14,12 @@ import { CollectionService } from "./collections.service";
   styles: ['thead {color: blue;}']
 })
   export class CollectionsComponent implements OnInit {
-    viewTitle: string = 'Table'
+    viewTitle: string = 'Table';
     displayImage: boolean = true;
     collections: ICollection[] = [];
+    contributers: IContributer[] = [];
 
-  constructor(private _collectionService: CollectionService, private _http: HttpClient, private _router: Router) { }
+  constructor(private _collectionService: CollectionService, private _collectionFlashcardService: CollectionFlashcardService, private _contributerService: ContributerService, private _http: HttpClient, private _router: Router) { }
 
     private _listFilter: string = '';
     get listFilter(): string {
@@ -32,7 +37,10 @@ import { CollectionService } from "./collections.service";
       console.log()
       this.collections = data;
       this.filteredCollections = this.collections;
-      })
+    })
+    this._contributerService.getContributers().subscribe(contributer => {
+      this.contributers = contributer;
+    })
     }
 
     deleteCollection(collection: ICollection): void {
@@ -72,12 +80,13 @@ import { CollectionService } from "./collections.service";
   }
 
   navigateToCollectionFlashcard(collectionId: number): void {
-    this._router.navigate(['/collectionFlashcard']);
+    this._router.navigate(['/collectionFlashcard/', collectionId]);
       console.log("Navigated to collectionFlashcard")
   }
 
   ngOnInit(): void {
     console.log('CollectionConponent created');
     this.getCollections();
+    
   }
 }

@@ -59,7 +59,7 @@ public class CollectionRepository : ICollectionRepository
         }
         catch (Exception e)
         {
-            _logger.LogError("[CollectionRepository] collection creation failed for collection {@collection}, error message: {e}", collection, e.Message);
+            _logger.LogError($"[CollectionRepository] collection creation failed for collection {@collection}, error message: {e}, {e.InnerException?.Message}", collection, e.Message, e.InnerException?.Message);
             return false;
         }
     }

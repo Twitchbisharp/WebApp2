@@ -33,7 +33,7 @@ public class CollectionController : Controller
     [HttpPost("create")]
     public async Task<IActionResult> Create([FromBody] Collection newCollection)
     {
-        _logger.LogError("api controller", newCollection);
+        _logger.LogError("Inside Create in CollectionController ", newCollection);
         if (newCollection == null)
         {
             return BadRequest("Invalid collection data.");

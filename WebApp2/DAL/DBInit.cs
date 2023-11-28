@@ -474,6 +474,12 @@ public static class DBInit
                     CollectionName = "German",
                     ContributerId = 1,
                 },
+                new Collection() {
+                    CollectionId = 3,
+                    CollectionDate = "16.11.2023",
+                    CollectionName = "somethignelse",
+                    ContributerId = 1,
+                },
             };
             context.AddRange(collections);
             context.SaveChanges();

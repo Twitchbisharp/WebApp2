@@ -21,13 +21,11 @@ export class CollectionformComponent {
 
   constructor(private _collectionService: CollectionService, private _formbuilder: FormBuilder, private _router: Router, private _route: ActivatedRoute) {
     this.collectionForm = _formbuilder.group({
-      collectionDate: [''],
-      collectionId: [''],
+      collectionDate: new Date().getDate().toString() + "." + (new Date().getMonth() + 1).toString() + "." + new Date().getFullYear().toString(),
       collectionName: ['', Validators.required],
-/*      collectionFlashcard: [''],*/
+      collectionFlashcardId: [1],
       totalFlashcards: [0],
-      contributerId: [''],
-/*      contributers: [''],*/
+      contributerId: [0],
     });
   }
 
@@ -37,6 +35,7 @@ export class CollectionformComponent {
     console.log("The collection " + this.collectionForm.value.collectionName + " is created.");
     console.log(this.collectionForm.touched);
     const newCollection = this.collectionForm.value;
+    console.log("NEWCOLLECTION: ", newCollection);
 
     if (this.isEditMode) {
       this._collectionService.updateCollection(this.collectionId, newCollection)
@@ -51,7 +50,7 @@ export class CollectionformComponent {
         });
     }
     else {
-      this._collectionService.createCollection(newCollection)
+      this._collectionService.createCollection( newCollection)
         .subscribe(response => {
           if (response.success) {
             console.log(response.message);
