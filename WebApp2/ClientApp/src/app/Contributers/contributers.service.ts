@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { IContributer } from "./contributer";
+import { ICollection } from '../Collections/collection';
 
 @Injectable({
   providedIn: "root"
@@ -14,6 +15,10 @@ export class ContributerService {
 
   getContributers(): Observable<IContributer[]> {
     return this._http.get<IContributer[]>(this.baseUrl);
+  }
+
+  getCollections(): Observable<ICollection[]> {
+    return this._http.get<ICollection[]>(this.baseUrl);
   }
 
   createContributer(newContributer: IContributer): Observable<any> {
