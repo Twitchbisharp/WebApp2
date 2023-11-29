@@ -49,8 +49,6 @@ export class PlayComponent implements OnInit {
     });
   }
 
-
-
   showPreviousFlashcard(): void {
     if (this.currentIndex > 0) {
       this.currentIndex--;

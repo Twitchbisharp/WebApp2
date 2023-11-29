@@ -12,9 +12,9 @@ import { Router } from "@angular/router";
 export class HomeComponent implements OnInit {
   collections: ICollection[] = [];
   images: string[] = [
-    'assets/images/Florida.png',
-    'assets/images/Ohio.png',
-    'assets/images/Colorado.png',
+    'assets/images/usa.jpg',
+    'assets/images/germany.jpg',
+    'assets/images/norway.jpg',
   ];
 
   constructor(private _collectionService: CollectionService, private _http: HttpClient, private _router: Router) { }

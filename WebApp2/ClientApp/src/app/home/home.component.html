@@ -26,8 +26,8 @@
     </article>
 
     <article *ngFor="let collection of getOrderedCollections()">
-      <a (click)="navigateToPlay(collection.collectionId)">
-        <img [src]="images[collection.collectionId-1]" alt="Collection Image" />
+      <a class="coolLmao" (click)="navigateToPlay(collection.collectionId)">
+        <img class="nightCall" [src]="images[collection.collectionId-1]" alt="Collection Image" />
       </a>
       <div>
         <h3>{{collection.collectionName}}</h3>

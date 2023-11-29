@@ -1,14 +1,17 @@
 <!----------------------------------------------------- play.component.html -->
 
 <h1 id="title">{{ collectionFlashcards[0].collection.collectionName }}</h1>
-<button (click)="showPreviousFlashcard()" [disabled]="currentIndex === 0">Previous Flashcard</button>
-<button (click)="showNextFlashcard()" [disabled]="currentIndex === flashcards.length - 1">Next Flashcard</button>
-<div *ngFor="let cf of collectionFlashcards; let i = index" [id]="'collectionFlashcard' + i" class="collectionflashcard" [hidden]="currentIndex !== i" (click)="flipCard()">
-  <div *ngIf="!dynamicProperties[i].showBack">{{ cf.flashcard.name }}</div>
-  <img *ngIf="!dynamicProperties[i].showBack && cf.flashcard.imageUrl" [src]="cf.flashcard.imageUrl" alt="Flashcard Image" class="img-fluid" width="250px">
-  <div *ngIf="dynamicProperties[i].showBack">{{ cf.flashcard.description }}</div>
+<div class="playbuttons">
+  <button class="prevbutton" (click)="showPreviousFlashcard()" [disabled]="currentIndex === 0">Previous Flashcard</button>
+  <button class="nextbutton" (click)="showNextFlashcard()" [disabled]="currentIndex === (collectionFlashcards.length -1)">Next Flashcard</button>
 </div>
-
+<div class="Drive">
+  <div *ngFor="let cf of collectionFlashcards; let i = index" [id]="'collectionFlashcard' + i" class="collectionflashcard" [hidden]="currentIndex !== i" (click)="flipCard()">
+    <div *ngIf="!dynamicProperties[i].showBack">{{ cf.flashcard.name }}</div>
+    <img *ngIf="!dynamicProperties[i].showBack && cf.flashcard.imageUrl" [src]="cf.flashcard.imageUrl" alt="Flashcard Image" class="img-fluid" >
+    <div *ngIf="dynamicProperties[i].showBack">{{ cf.flashcard.description }}</div>
+  </div>
+</div>
 
 <!--<h1 id="title">{{ collectionFlashcards[0].collection.collectionName }}</h1>
 

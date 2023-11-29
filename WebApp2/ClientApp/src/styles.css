@@ -24,6 +24,11 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+a.navbar-brand:hover {
+  transition: color 0.2s;
+  color:aqua;
+}
+
 html {
   font-size: 14px;
 }
@@ -39,8 +44,17 @@ html {
 }
 
 .navbar {
-  background-color: grey;
+  background-color: #84AFD5;
   border-radius: 10px;
+}
+
+.nav-link {
+    color: black;
+}
+
+.nav-link:hover {
+  transition: color 0.2s;
+  color: aqua;
 }
 /*NAV BAR SECTION*/
 a {
@@ -53,9 +67,32 @@ code {
 
 .btn-primary {
   color: #000000;
-  background-color: #D3CCC3;
+  background-color: #84AFD5;
   border-color: #000000;
 }
+
+.btn-danger {
+  border-color: #000000;
+}
+
+.btn-primary:hover {
+  color: #000000;
+  background-color: #5491C5;
+  border-color: #000000;
+}
+
+.btn-danger:hover {
+  border-color: #000000;
+}
+
+/*.collectionflashcard {
+  width: 300px;
+  padding: 50px 0px 50px 0px;
+  border: black solid 2px;
+  text-align: center;
+  background-color: #84AFD5;
+  border-radius: 25px;
+}*/
 
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;800&family=VT323&display=swap');
@@ -63,7 +100,7 @@ code {
 body {
   margin: 30px;
   font-family: "Poppins";
-  background: #D3CCC3;
+  background: #B3CEE5;
 }
 
 ul, li {
@@ -72,17 +109,17 @@ ul, li {
 }
 
 h1, h2, h3 {
-  color: #6C6C64;
+  color: #241B22;
 }
 
 p {
-  color: #6C6C64;
+  color: #241B22;
 }
 
 header {
   max-width: 1200px;
   margin: 40px auto;
-  border-bottom: 1px solid #85807C;
+  border-bottom: 1px solid #275072;
 }
 
 .grid-contents {
@@ -99,13 +136,13 @@ article.featured {
   grid-template-columns: 1fr;
   gap: 60px;
   align-items: center;
-  border-bottom: 1px solid #85807C;
+  /*border-bottom: 1px solid #275072;*/
   padding-bottom: 40px;
 }
 
   article img, article.featured img {
     width: 100%;
-    border: 4px solid #85807C;
+    border: 4px solid #275072;
     border-radius: 8px;
   }
 
@@ -130,3 +167,72 @@ article p, .article h3 {
     margin: 0 20px;
   }
 }
+
+.collectionflashcard {
+  font-size: 35px;
+  width: 700px;
+  padding: 50px 0px 50px 0px;
+  border: black solid 2px;
+  text-align: center;
+  background-color: #84AFD5;
+  border-radius: 25px;
+}
+
+
+.prevbutton {
+  text-align: center;
+  background-color: #84AFD5;
+}
+.nextbutton {
+  text-align: center;
+  background-color: #84AFD5;
+}
+
+.Drive {
+  /*Flex display*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:5px 0 0 0;
+  
+}
+
+.playbuttons {
+  text-align: center;
+}
+#title {
+    text-align: center;
+}
+
+/*.coolLmao:hover{
+    background-color: black;
+    border: 30px black solid;
+}*/
+
+.coolLmao {
+  background-color: rgb(0, 255, 144,0.5);
+  padding: 159px 0px 162px 0px;
+  border-radius: 10px;
+}
+
+.nightCall {
+  transition: background-color 0.3s, opacity 0.3s;
+  background-color: rgba(255,0,0,1);
+}
+
+  .nightCall:hover {
+    opacity: 0.5;
+    cursor: pointer;
+    background-color: rgba(255,0,0,1);
+  }
+
+.playbuttons button:disabled {
+  opacity: 0.5; 
+  cursor: not-allowed;
+}
+
+
+/*.playbuttons {
+  position: absolute;
+  left: 50%;
+}*/
