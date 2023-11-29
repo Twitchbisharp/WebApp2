@@ -28,7 +28,7 @@ export class CollectionFlashcardFormComponent implements OnInit{
   ) {
     this.collectionFlashcardForm = _formbuilder.group({
       collectionFlashcards: [''],
-      flashcards: [''],
+      flashcards: ['', Validators.required],
       collectionId: [''],
     })
 
@@ -48,8 +48,6 @@ export class CollectionFlashcardFormComponent implements OnInit{
         console.error('Error fetching data:', error);
       }
     );
-
-    //console.log("Retrieved flashcards: ", this.flashcards)
   }
 
   onSubmit() {
@@ -70,44 +68,6 @@ export class CollectionFlashcardFormComponent implements OnInit{
 
     this._collectionFlashcardService.addCollectionFlashcard(newCollectionFlashcards);
 
-    //this._collectionFlashcardService.getCollectionFlashcard().subscribe(
-    //  (collectionFlashcards) => {
-    //    this.collectionFlashcard = collectionFlashcards;
-    //    console.log("Retrieved collectionFlashcards after update: ", this.collectionFlashcard);
-    //  }
-/*    );*/
-
-
-    //console.log("Selected Flashcard: ", this.collectionForm.value.selectedFlashcards)
-    //for (let i of this.collectionForm.value.selectedFlashcards) {
-    //  const collectionFlashcard: ICollectionFlashcard = { flashcardId: i.flashcardId, collectionId: this.collectionId }
-    //  this.collectionFlashcardForm.patchValue({
-    //    flashcardId: collectionFlashcard.flashcardId,
-    //    collectionId: this.collectionId,
-    //  })
-    //  this._collectionFlashcardService.addCollectionFlashcard(this.collectionFlashcardForm);
-    //  console.log("Created collectionFlashcard Real ", collectionFlashcard)
-    //}
-
-    //this._collectionFlashcardService.getCollectionFlashcard().subscribe(
-    //  (collectionFlashcard) => {
-    //    this.collectionFlashcard = collectionFlashcard;
-    //    console.log("Retrieved collectionFlashcards after update: ", this.collectionFlashcard)
-    //  }
-    //)
-    
-
-    //const newCollection = this.collectionForm.value;
-    //console.log("newCollection: ", newCollection)
-
-    //if (this.isEditMode) {
-    //  console.log("sending collection: ", newCollection)
-    //  this._collectionService.updateCollection(this.collectionId, newCollection)
-    //    .subscribe(response => this.handleResponse(response));
-    //} else {
-    //  this._collectionService.createCollection(newCollection)
-    //    .subscribe(response => this.handleResponse(response));
-    //}
   }
 
   private handleResponse(response: any) {
@@ -131,6 +91,8 @@ export class CollectionFlashcardFormComponent implements OnInit{
       })
       })
   }
+
+
 
   loadCollectionFlashcardsByCollectionId(collectionId: number) {
     this._collectionFlashcardService.getCollectionFlashcardByCollectionId(collectionId)
