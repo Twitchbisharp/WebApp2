@@ -15,9 +15,12 @@ import { forkJoin } from 'rxjs';
 
 export class CollectionFlashcardFormComponent implements OnInit{
   collectionFlashcardForm: FormGroup;
+  selectedFlashcardForm: FormGroup;
   collectionFlashcards: ICollectionFlashcard[] = [];
   flashcards: IFlashcard[] = [];
   collectionId: number = 0;
+  dummyCollection: ICollection[] = [];
+  dummyFlashcards: IFlashcard[] = [];
 
   constructor(
     private _flashcardService: FlashcardService,
@@ -27,9 +30,14 @@ export class CollectionFlashcardFormComponent implements OnInit{
     private _route: ActivatedRoute
   ) {
     this.collectionFlashcardForm = _formbuilder.group({
-      collectionFlashcards: [''],
-      flashcards: ['', Validators.required],
-      collectionId: [''],
+      flashcards: [''],
+
+    })
+    this.selectedFlashcardForm = _formbuilder.group({
+      collection: this.dummyCollection,
+      collectionId: this.collectionId,
+      flashcard: this.dummyFlashcards,
+      flashcardId: [0],
     })
 
 
@@ -53,22 +61,20 @@ export class CollectionFlashcardFormComponent implements OnInit{
   onSubmit() {
     console.log("Selected Flashcard: ", this.collectionFlashcardForm.value);
 
-    const newCollectionFlashcards: ICollectionFlashcard[] = [];
 
-    for (let selectedFlashcard of this.collectionFlashcardForm.value.selectedFlashcards) {
-      const collectionFlashcard: ICollectionFlashcard = {
+    for (let selectedFlashcard of this.collectionFlashcardForm.value.flashcards) {
+      this.selectedFlashcardForm.patchValue({
         flashcardId: selectedFlashcard.flashcardId,
-        collectionId: this.collectionId
+        collectionId: this.collectionId,
+      })
+      this._collectionFlashcardService.addCollectionFlashcard(this.selectedFlashcardForm.value)
+        .subscribe(response => {
+          this.handleResponse(response)
+        });
+      console.log("Created collectionFlashcard ", this.selectedFlashcardForm.value);
       };
-
-      newCollectionFlashcards.push(collectionFlashcard);
-
-      console.log("Created collectionFlashcard Real ", collectionFlashcard);
     }
-
-    this._collectionFlashcardService.addCollectionFlashcard(newCollectionFlashcards);
-
-  }
+  
 
   private handleResponse(response: any) {
     if (response.success) {
