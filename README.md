@@ -13,7 +13,7 @@ In addition, a short documentation of 1000-3000 words (in English) must be writt
 ## Requirements
 - [x] Create an MVP (Minimum Viable Product) solution of one of the tasks.
 - [x] .NET Core. (6.0 or later) on the back-end.
-- [x] React or Angular  on the front-end.
+- [x] React or Angular on the front-end.
 
 ### Basic requirements:
 - [x] The application should not crash.
@@ -24,7 +24,7 @@ In addition, a short documentation of 1000-3000 words (in English) must be writt
 ### Addition requirements (that serve as guidelines for improving quality in 3 dimensions):
 User experience, including:
 - [ ] Basic design, not plain text and bare buttons
-- [ ] Dynamic content
+- [x] Dynamic content
 - [x] Friendly navigation
 Coding style and documentation, including:
 - [x] Neat code, structured, and modularised
@@ -32,10 +32,10 @@ Coding style and documentation, including:
 - [ ] Good documentation (in the short documentation) that clarifies project architecture, functionality and how they are coded.
 
 Functionality, including:
-- [ ] Database operation with more than 1 type of entity (including component and CRUD)
+- [x] Database operation with more than 1 type of entity (including component and CRUD)
 - [x] Service injection (client-side)
-- [ ] Custom pipe
-- [ ] Forms and input validation (client-side)
-- [ ] Error handling and logging (client-side)
+- [ ] Custom pipe - Least Likely to do
+- [x] Forms and input validation (client-side)
+- [x] Error handling and logging (server-side)
 - [x] Content filtering (client-side)
 - [ ] Unit testing, at least including the complete positive tests and negative tests for each CRUD method (where testing is meaningful) of 1 entity/table (server-side) 

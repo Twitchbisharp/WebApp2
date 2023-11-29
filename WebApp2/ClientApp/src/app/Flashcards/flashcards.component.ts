@@ -7,7 +7,7 @@ import { FlashcardService } from "./flashcards.service";
 @Component({
   selector: 'app-flashcards-component',
   templateUrl: './flashcards.component.html',
-  styles: ['thead {color: blue;}']
+  styles: ['thead {color: black;}']
 })
 export class FlashcardsComponent implements OnInit {
     viewTitle: string = 'Table'
