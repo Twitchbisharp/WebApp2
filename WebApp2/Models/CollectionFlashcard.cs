@@ -15,13 +15,13 @@ namespace WebApp2.Models
         public int FlashcardId { get; set; }
 
         //Navigation property
-        public virtual Flashcard Flashcard { get; set; } = default!;
+        public virtual Flashcard? Flashcard { get; set; } = default!;
 
         [JsonPropertyName("CollectionId")]
         public int CollectionId { get; set; }
 
         //Navigation property
         // This creates Json-loop
-        public virtual Collection Collection { get; set; } = default!;
+        public virtual Collection? Collection { get; set; } = default!;
     }
 }
