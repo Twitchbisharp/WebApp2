@@ -28,26 +28,28 @@ export class CollectionFlashcardFormComponent implements OnInit{
   ) {
     this.collectionFlashcardForm = _formbuilder.group({
       collectionFlashcards: [''],
-      flahscards: [''],
+      flashcards: [''],
       collectionId: [''],
     })
 
 
-  //  // Automatic data insertion
-  //  forkJoin([
-  //    this._flashcardService.getFlashcards(),
-  //  ]).subscribe(
-  //    ([flashcards]) => {
-  //      this.flashcards = flashcards;
-  //      console.log("Retrieved flashcards: ", flashcards)
-  //      this.collectionFlashcardForm.patchValue({
-  //        flashcards: [],
-  //      });
-  //    },
-  //    (error) => {
-  //      console.error('Error fetching data:', error);
-  //    }
-  //  );
+    // Automatic data insertion
+    forkJoin([
+      this._flashcardService.getFlashcards(),
+    ]).subscribe(
+      ([flashcards]) => {
+        this.flashcards = flashcards;
+        console.log("Retrieved flashcards: ", flashcards)
+        this.collectionFlashcardForm.patchValue({
+          flashcards: [],
+        });
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
+
+    //console.log("Retrieved flashcards: ", this.flashcards)
   }
 
   onSubmit() {
