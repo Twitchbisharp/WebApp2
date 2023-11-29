@@ -85,7 +85,7 @@ import { CollectionFlashcardService } from "../CollectionFlashcard/collectionFla
   }
 
   ngOnInit(): void {
-    console.log('CollectionConponent created');
+    console.log('CollectionComponent created');
     this.getCollections();
     
   }
