@@ -17,13 +17,7 @@ export class HomeComponent implements OnInit {
     'assets/images/Colorado.png',
   ];
 
-
-
-
   constructor(private _collectionService: CollectionService, private _http: HttpClient, private _router: Router) { }
-
-
-
 
   getCollections(): void {
     this._collectionService.getCollections().subscribe((data: ICollection[]) => {
@@ -31,6 +25,14 @@ export class HomeComponent implements OnInit {
       console.log()
       this.collections = data;
     })
+  }
+
+  getOrderedCollections(): ICollection[] {
+    return [
+      this.collections.find(c => c.collectionName === 'English') || {} as ICollection,
+      this.collections.find(c => c.collectionName === 'Norway') || {} as ICollection,
+      this.collections.find(c => c.collectionName === 'German') || {} as ICollection,
+    ];
   }
 
   navigateToPlay(collectionId: number): void {
