@@ -24,45 +24,58 @@
         </p>
       </div>
     </article>
-      <article *ngFor ="let collection of collections.slice(0,3)">
-        <a (click)="navigateToPlay(collection.collectionId)">
-          <img [src]="this.images[collection.collectionId-1]" alt="this.images[collection.collectionId-1]"/>
-        </a>
-        <div>
-          <h3>{{collection.collectionName}}</h3>
-          <p>Test your skills about {{collection.collectionName}}!</p>
-        </div>
-       </article>
+
+    <article *ngFor="let collection of getOrderedCollections()">
+      <a (click)="navigateToPlay(collection.collectionId)">
+        <img [src]="images[collection.collectionId-1]" alt="Collection Image" />
+      </a>
+      <div>
+        <h3>{{collection.collectionName}}</h3>
+        <p>Test your skills about {{collection.collectionName}}!</p>
+      </div>
+    </article>
+
+
+
+    <!--<article *ngFor="[collections[0], collections[2], collections[1]]">
+      <a (click)="navigateToPlay(collection.collectionId)">
+        <img [src]="this.images[collection.collectionId-1]" alt="this.images[collection.collectionId-1]" />
+      </a>
+      <div>
+        <h3>{{collection.collectionName}}</h3>
+        <p>Test your skills about {{collection.collectionName}}!</p>
+      </div>
+    </article>-->
 
 
     <!-- Good memories -->
     <!--<article>
-      <a routerLink="/play', collection.collectionId">
-        <img src="assets/images/Florida.png" alt="Norway" />
-      </a>
-      <div>
-        <h3>Norway</h3>
-        <p>Learn a new language!</p>
-      </div>
-    </article>
-    <article>
-      <a routerLink="/german">
-        <img src="assets/images/Ohio.png" alt="German" />
-      </a>
-      <div>
-        <h3>German</h3>
-        <p>Test your skills about different dishes!</p>
-      </div>
-    </article>
-    <article>
-      <a routerLink="/america">
-        <img src="assets/images/Colorado.png" alt="America" />
-      </a>
-      <div>
-        <h3>America</h3>
-        <p>Learn world geography the easy way!</p>
-      </div>
-    </article>-->
+    <a routerLink="/play', collection.collectionId">
+      <img src="assets/images/Florida.png" alt="Norway" />
+    </a>
+    <div>
+      <h3>Norway</h3>
+      <p>Learn a new language!</p>
+    </div>
+  </article>
+  <article>
+    <a routerLink="/german">
+      <img src="assets/images/Ohio.png" alt="German" />
+    </a>
+    <div>
+      <h3>German</h3>
+      <p>Test your skills about different dishes!</p>
+    </div>
+  </article>
+  <article>
+    <a routerLink="/america">
+      <img src="assets/images/Colorado.png" alt="America" />
+    </a>
+    <div>
+      <h3>America</h3>
+      <p>Learn world geography the easy way!</p>
+    </div>
+  </article>-->
   </main>
 </body>
 </html>
