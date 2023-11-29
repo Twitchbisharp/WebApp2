@@ -1,6 +1,6 @@
 <h1 id="tableLabel">List of Flashcards in {{collections[0].collectionName}}</h1>
 
-<div class="container row">   <!--Row of actions-->
+<div class="container row"> 
   <div class="col-md-4 p-0">  <!--Column 1-->
     <button class="btn btn-primary" (click)="loadFlashcards()">Get Collections</button>
   </div>
@@ -27,8 +27,6 @@
       <td> {{ collectionFlashcard.flashcard.name}}</td>
       <td> {{ collectionFlashcard.flashcard.description}}</td>
       <td><img  *ngIf="displayImage" [src]="collectionFlashcard.flashcard.imageUrl" width="80"></td>
-      <!--<td> {{ collectionFlashcard.collectionId }}</td>
-      <td> {{ collectionFlashcard.collection.collectionName }}</td>-->
 
 
     </tr>

@@ -15,8 +15,7 @@ export class HomeComponent implements OnInit {
     'assets/images/usa.jpg',
     'assets/images/germany.jpg',
     'assets/images/norway.jpg',
-  ];
-
+  ];/* Predefined for homepage*/
   constructor(private _collectionService: CollectionService, private _http: HttpClient, private _router: Router) { }
 
   getCollections(): void {

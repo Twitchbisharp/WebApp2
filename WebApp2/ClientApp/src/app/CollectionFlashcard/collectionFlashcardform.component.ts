@@ -41,13 +41,19 @@ export class CollectionFlashcardFormComponent implements OnInit{
     })
 
 
-    // Automatic data insertion
+    /*
+    Using forkJoin to combine multiple observable streams into a single stream
+    In this case, it's used to make multiple HTTP requests concurrently
+    */
     forkJoin([
       this._flashcardService.getFlashcards(),
     ]).subscribe(
       ([flashcards]) => {
         this.flashcards = flashcards;
-        console.log("Retrieved flashcards: ", flashcards)
+
+        console.log("Retrieved flashcards: ", flashcards);
+
+        // Setting its value to an empty array with patch
         this.collectionFlashcardForm.patchValue({
           flashcards: [],
         });
@@ -56,6 +62,7 @@ export class CollectionFlashcardFormComponent implements OnInit{
         console.error('Error fetching data:', error);
       }
     );
+
   }
 
   onSubmit() {

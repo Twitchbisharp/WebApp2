@@ -55,7 +55,6 @@ export class FlashcardsComponent implements OnInit {
       }
     }
 
-
     filteredFlashcards: IFlashcard[] = this.flashcards;
 
     performFilter(filterBy: string): IFlashcard[] {

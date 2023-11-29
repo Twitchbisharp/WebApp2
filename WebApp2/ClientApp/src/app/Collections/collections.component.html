@@ -1,17 +1,16 @@
 <h1 id="tableLabel">List of Collections</h1>
 
-<div class="container row">   <!--Row of actions-->
+<div class="container row">
   <div class="col-md-4 p-0">  <!--Column 1-->
     <button class="btn btn-primary" (click)="getCollections()">Get Collections</button>
   </div>
   <div class="d-flex flex-row justify-content-end col-md-4"> <!--Column 2 with content aligned right-->
-    <h6>Filtered by: {{listFilter}}</h6>  <!--Dynamic filter visualisation-->
+    <h6>Filtered by Collection Names: {{listFilter}}</h6>  <!--Dynamic filter visualisation-->
   </div>
   <div class="col-md-4"> <!--Column 3-->
     <input type='text' [(ngModel)]='listFilter' /> <!--Input field for filter-->
   </div>
 </div>
-
 
 <table class='table table-striped' aria-labelledby="tableLabel">
   <thead>
@@ -28,19 +27,30 @@
   <tbody>
     <tr *ngFor='let collection of filteredCollections'>
       <td>{{ collection.collectionId }}</td>
-      <!--<td>{{ collection.collectionName}}</td>-->
       <td>
-          <a style="cursor: pointer;" (click)="navigateToCollectionFlashcard(collection.collectionId)">{{ collection.collectionName }}</a>
+        <a class="collectionNamesStyle" style="cursor: pointer;" (click)="navigateToCollectionFlashcard(collection.collectionId)">{{ collection.collectionName }}</a>
       </td>
-      <td>{{ collection.collectionDate}}</td>
-      <td>{{ collection.totalFlashcards}}</td>
-      <td>{{ collection.contributerId}}</td>
+      <td>{{ collection.collectionDate }}</td>
       <td>
-        <span *ngFor="let contributer of contributers">
-          <span *ngIf="contributer.contributerId == collection.contributerId">
-            {{contributer.name}}
+        <ng-container *ngIf="collection.totalFlashcards !== null && collection.totalFlashcards !== undefined && collection.totalFlashcards !== 0; else hiddenText">
+          {{ collection.totalFlashcards }}
+        </ng-container>
+        <ng-template #hiddenText>
+          <span>hidden</span>
+        </ng-template>
+      </td>
+      <td>{{ collection.contributerId !== null && collection.contributerId !== undefined && collection.contributerId !== 0 ? collection.contributerId : 'hidden' }}</td>
+      <td>
+        <ng-container *ngIf="collection.contributerId !== null && collection.contributerId !== undefined && collection.contributerId !== 0 && contributers && contributers.length > 0; else hiddenText">
+          <span *ngFor="let contributer of contributers">
+            <span *ngIf="contributer.contributerId == collection.contributerId">
+              {{ contributer.name }}
+            </span>
           </span>
-        </span>
+        </ng-container>
+        <ng-template #hiddenText>
+          <span>hidden</span>
+        </ng-template>
       </td>
       <td>
         <button class="btn btn-primary" [routerLink]="['/play', collection.collectionId]">Play</button>
@@ -51,5 +61,4 @@
   </tbody>
 </table>
 
-<!--<button class="btn btn-primary" (click)="navigateToCollectionform()">Create new Collection</button>-->
 <button class="btn btn-primary" [routerLink]="['/collectionform', 'create', -1]">Create new Collection</button>

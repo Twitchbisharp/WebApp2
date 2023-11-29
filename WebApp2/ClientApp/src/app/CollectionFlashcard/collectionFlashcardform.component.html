@@ -11,13 +11,6 @@
         {{flashcard.flashcardId}}. Term: {{flashcard.name}}, Description: {{flashcard.description}}
       </option>
     </select>
-
-    <!--<select multiple style="width: 500px;">
-    <option *ngFor="let collectionflashcard of collectionFlashcards" [ngValue]="collectionflashcard">
-    {{collectionflashcard.flashcard.flashcardId}}.
-    Term: {{collectionflashcard.flashcard.name}},
-    Description: {{collectionflashcard.flashcard.description}}</option>
-  </select>-->
   </div>
 
   <button class="btn-primary btn" type="submit" [disabled]="collectionFlashcardForm.invalid">Add Flashcard to Collection</button>

@@ -1,4 +1,4 @@
-<h2>{{isEditMode ? 'Update' : 'Create'}}Create Flashcard</h2>
+<h2>{{isEditMode ? 'Update' : 'Create'}} Flashcard</h2>
 
 <form [formGroup]="flashcardForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
@@ -8,7 +8,7 @@
       A valid name is required in order to create a flashcard
     </div>
     <div *ngIf="flashcardForm.get('name')?.hasError('required') && flashcardForm.get('name')?.touched" class=" danger">
-      The name must be letters between 1 and 20 characters
+      The name must be letters between 2 and 300 characters
     </div>
 
   </div>
@@ -20,7 +20,7 @@
     A valid description is required in order to create a flashcard
   </div>
   <div *ngIf="flashcardForm.get('description')?.hasError('maxLength') " class=" danger">
-    The description can not exceed 120 characters
+    The description can not exceed 300 characters
   </div>
 
   <div class="form-group">

@@ -179,6 +179,19 @@ article p, .article h3 {
 }
 
 
+a.collectionNamesStyle{
+    font-size: 20px;
+    padding: 0 7px 0 7px;
+}
+
+  a.collectionNamesStyle:hover {
+    transition: background-color 0.5s, border 0.5s;
+    background-color: #84AFD5;
+    border-radius: 8px;
+    border: 1px solid black;
+  }
+
+
 .prevbutton {
   text-align: center;
   background-color: #84AFD5;
@@ -230,9 +243,3 @@ article p, .article h3 {
   opacity: 0.5; 
   cursor: not-allowed;
 }
-
-
-/*.playbuttons {
-  position: absolute;
-  left: 50%;
-}*/

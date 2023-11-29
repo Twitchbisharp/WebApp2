@@ -40,25 +40,6 @@ import { CollectionService } from "../Collections/collections.service"
       })
     }
 
-  //  deleteCollection(collection: ICollectionFlashcard): void {
-  //    const confirmDelete = confirm(`Are you sure you want to delete "${collection.collectionName}"?`);
-  //    if (confirmDelete) {
-  //      this._collectionService.deleteCollection(collection.collectionId)
-  //        .subscribe(
-  //          (response) => {
-  //            if (response.success) {
-  //              console.log(response.message);
-  //              this.filteredCollections = this.filteredCollections.filter(i => i !== collection);
-  //              // Update collections
-  //              this.getCollections();
-  //            }
-  //          },
-  //          (error) => {
-  //            console.error('Error deleting collection', error);
-  //          });
-
-  //    }
-  //}
   filteredCollectionFlashcards: ICollectionFlashcard[] = this.collectionFlashcards;
 
   performFilter(filterBy: string): ICollectionFlashcard[] {

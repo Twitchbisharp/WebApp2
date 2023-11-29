@@ -17,12 +17,12 @@ export class FlashcardformComponent {
     this.flashcardForm = this._formbuilder.group({
       name: ["", [
         Validators.required,
-        Validators.pattern(/^[0-9a-zA-ZæøåÆØÅ. -]{2,15}$/)
+        Validators.pattern(/^[0-9a-zA-ZæøåÆØÅ. -]{2,300}$/)
       ]],
       description: ["", [
         Validators.required,
-        Validators.maxLength(120),
-        Validators.pattern(/^[0-9a-zA-ZæøåÆØÅ. -]{2,15}$/)
+        Validators.maxLength(300),
+        Validators.pattern(/^[0-9a-zA-ZæøåÆØÅ. -]{2,300}$/)
       ]],
       deckId: null
     });
@@ -86,7 +86,6 @@ export class FlashcardformComponent {
     console.log('Value:', this.flashcardForm.value);//Gives us the unvalid flashcard
 
   }
-
 
   loadFlashcardForEdit(flashcardId: number) {
     this._flashcardService.getFlashcardById(this.flashcardId)

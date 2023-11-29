@@ -19,7 +19,11 @@ import { CollectionFlashcardService } from "../CollectionFlashcard/collectionFla
     collections: ICollection[] = [];
     contributers: IContributer[] = [];
 
-  constructor(private _collectionService: CollectionService, private _collectionFlashcardService: CollectionFlashcardService, private _contributerService: ContributerService, private _http: HttpClient, private _router: Router) { }
+  constructor(private _collectionService: CollectionService,
+    private _collectionFlashcardService: CollectionFlashcardService,
+    private _contributerService: ContributerService,
+    private _http: HttpClient,
+    private _router: Router) { }
 
     private _listFilter: string = '';
     get listFilter(): string {
