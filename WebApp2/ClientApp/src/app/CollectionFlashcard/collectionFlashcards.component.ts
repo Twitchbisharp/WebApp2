@@ -3,6 +3,8 @@ import { ICollectionFlashcard } from './collectionFlashcard';
 import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CollectionFlashcardService } from "./collectionFlashcards.service";
+import { ICollection } from "../Collections/collection";
+import { CollectionService } from "../Collections/collections.service"
 
 @Component({
   selector: 'app-collectionFlashcards-component',
@@ -14,8 +16,9 @@ import { CollectionFlashcardService } from "./collectionFlashcards.service";
     displayImage: boolean = true;
     collectionFlashcards: ICollectionFlashcard[] = [];
     collectionId: number = -1;
+    collections: ICollection[] = [];
 
-  constructor(private _collectionFlashcardService: CollectionFlashcardService, private _http: HttpClient, private _router: Router, private _route: ActivatedRoute) { }
+  constructor(private _collectionFlashcardService: CollectionFlashcardService, private _collectionService: CollectionService, private _http: HttpClient, private _router: Router, private _route: ActivatedRoute) { }
 
     private _listFilter: string = '';
     get listFilter(): string {
@@ -81,6 +84,7 @@ import { CollectionFlashcardService } from "./collectionFlashcards.service";
   loadFlashcards(): void {
     this._route.params.subscribe(params => {
       this.collectionId = params['id']
+      this._collectionService.getCollectionById(this.collectionId).subscribe(collection => { this.collections.push(collection); console.log(this.collections); })
       this._collectionFlashcardService.getCollectionFlashcard().subscribe(collectionFlashcards => {
         console.log("", collectionFlashcards[0].collectionId)
         for (let cf of collectionFlashcards) {

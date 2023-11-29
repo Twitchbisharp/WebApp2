@@ -580,12 +580,12 @@ public static class DBInit
             context.SaveChanges();
         }
 
-        // Updating Collection.TotalFlashcards to represent the number of collectionFlashcard attached
-        //var collectionsToUpdate = context.Collections.Include(o => o.CollectionFlashcard);
-        //foreach (var collection in collectionsToUpdate)
-        //{
-        //    collection.TotalFlashcards += collection.CollectionFlashcard.Count;
-        //}
-        //context.SaveChanges();
+        //Updating Collection.TotalFlashcards to represent the number of collectionFlashcard attached
+        var collectionsToUpdate = context.Collections.Include(o => o.CollectionFlashcard);
+        foreach (var collection in collectionsToUpdate)
+        {
+            collection.TotalFlashcards += collection.CollectionFlashcard.Count;
+        }
+        context.SaveChanges();
     }
 }
